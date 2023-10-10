@@ -16,11 +16,13 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import path, include
+from DIP.views import home_view
+from WebPages import DIP
 
 urlpatterns = [
+    path('', include('DIP.urls')),
     path('admin/', admin.site.urls),
-
 ]
 
 

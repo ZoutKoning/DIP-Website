@@ -5,6 +5,7 @@ from . import decode_jwt
 from django.http import JsonResponse
 import base64
 import requests
+import boto3
 
 def index(request):
     try:

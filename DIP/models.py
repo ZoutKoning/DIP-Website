@@ -16,7 +16,7 @@ class Sprint (models.Model):
 
 class User (models.Model):
 
-    user_ID = models.IntegerField()
+    user_ID = models.IntegerField(primary_key=True)
     user_FName = models.CharField(max_length = 250)
     user_LName = models.CharField(max_length= 250)
     user_Password = models.CharField(max_length= 250)
@@ -26,8 +26,15 @@ class User (models.Model):
 
 class Driver (models.Model):
     user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+    wallet = models.CharField(max_length=250)
 
 
+class Sponsor (models.Model):
+     user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+     sponsorCo = models.CharField(max_length=250)
 
 
+class Admin(models.Model):
+    user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+    reportType = models.CharField(max_length=250)
 

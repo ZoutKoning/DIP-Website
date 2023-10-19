@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+
 # Create your models here
 
 class DIP (models.Model):
@@ -12,3 +13,21 @@ class Sprint (models.Model):
     def __str__(self):
         """string for sprint"""
         return f' {self.sprint},{self.sprint_info}'
+
+class User (models.Model):
+
+    user_ID = models.IntegerField()
+    user_FName = models.CharField(max_length = 250)
+    user_LName = models.CharField(max_length= 250)
+    user_Password = models.CharField(max_length= 250)
+    user_LoginName = models.CharField(max_length= 250)
+    user_Type = models.CharField(max_length=1)
+
+
+class Driver (models.Model):
+    user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+
+
+
+
+

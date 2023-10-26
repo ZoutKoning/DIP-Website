@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': 'AboutPageInfo',
         'USER': 'admin',
         'PASSWORD': 'Team05WillBeGreat25#',
-        'HOST':'team05-rds.cobd8enwsupz.us-east-1.rds.amazonaws.com',
-        'PORT':'3306',
+        'HOST': 'team05-rds.cobd8enwsupz.us-east-1.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
 
@@ -126,3 +126,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cognito Configuration
+COGNITO_USER_POOL_ID = 'us-east-1_mwt8Tw8od'
+COGNITO_CLIENT_ID = '24572ehjeno50ma5122ql3oumd'
+COGNITO_CLIENT_SECRET = '1infvrlnju43ncak5m7l9rhtpru052tnbdv9u5l5mvum7hrvovcj'
+
+# Connect the backend
+AUTHENTICATION_BACKENDS = (
+    'DIP.backend.CognitoBackend'
+)

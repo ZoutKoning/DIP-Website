@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function validatePasswords() {
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form action="/signup/" method="post" onsubmit="return validatePasswords();">
+            <input type="text" name="username" placeholder="Username" required>
+
+            <input type="password" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number, one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <small>Password must be at least 8 characters long with one number and one uppercase and lowercase letter.</small>
+
+            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+
+            <input type="email" name="email" placeholder="Email" required>
+
+            <select name="group">
+                <option value="Drivers">Drivers</option>
+                <option value="Admin">Admin</option>
+                <option value="Sponsors">Sponsors</option>
+            </select>
+
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

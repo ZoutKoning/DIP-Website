@@ -47,7 +47,7 @@ def signup_view(request):
                 GroupName=group
             )
 
-            return redirect('login')  # Redirect to login view after successful signup
+            return redirect('login_view')  # Redirect to login view after successful signup
 
         except client.exceptions.ClientError as e:
             return render(request, 'signup.html', {'error_message': 'Error signing up. Try again.'})

@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DriverIncentiveProgram</title>
-            <link rel="stylesheet" href="styles.css">
+            <link rel="stylesheet" href="static/styles.css">
     </head>
-    <body style="background-color:black;text-align:center">
+    <body>
 
     <!--section Navbar-->
     <nav class="navbar">
@@ -20,10 +20,10 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="index.html" class="navbar__links" id="home-page">Home</a> 
+                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="about.html" class="navbar__links" id="about-page">About Page</a> 
+                    <a href="{% url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
                     <a href="#wallet" class="navbar__links" id="wallet-page">My Wallet</a> 

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriverIncentiveProgram</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
     <!--section Navbar-->
@@ -22,13 +22,16 @@
                    <a href="#home" class="navbar__links" id="home-page">Home</a> 
                 </li>
                 <li class="navbar__item">
-                    <a href="#about" class="navbar__links" id="about-page">About Page</a> 
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="#project" class="navbar__links" id="project-page">Wallet</a> 
+                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
                     <a href="login.html" class="navbar__links">Log In</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="#application" class="navbar__links" id="application-page">Apply Here</a>
                  </li>
                  
                  
@@ -65,6 +68,20 @@
             <p class = "work__description">(2023 - Present)<br>
                 PLACE HOLDING TEXT 4 <br>
                 <br>
+            </p>
+        </div>
+    </div>
+
+    <!--section Applications-->
+    <div class="apply" id="application">
+        <div class="apply__container">
+            <h1 class="apply__heading">Applications are Open!</h1>
+            <!--<button type="button">Click Me!</button-->
+            <button class="button button1">Click Here</button>
+             I'm creating a link to
+                <a href="Driver Incentive Program Application(Sponsor2) - Google Docs.pdf">Sponsor Application</a>.
+              </p>
+            <p class="apply__description">PLACE HOLDING TEXT<br>
             </p>
         </div>
     </div>

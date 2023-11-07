@@ -22,13 +22,16 @@
                    <a href="#home" class="navbar__links" id="home-page">Home</a> 
                 </li>
                 <li class="navbar__item">
-                    <a href="#about" class="navbar__links" id="about-page">About Page</a> 
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="#project" class="navbar__links" id="project-page">Wallet</a> 
+                    <a href="{%url 'wallet' %}" class="navbar__links" id="wallet-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
                     <a href="login.html" class="navbar__links">Log In</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="#application" class="navbar__links" id="application-page">Apply Here</a>
                  </li>
                  
                  
@@ -58,13 +61,27 @@
     </div>
 
     <!--section Wallet-->
-    <div class="work" id="project">
+    <div class="work" id="wallet">
         <div class="work__container">
             <h1 class="work__heading">Wallet</h1>
             <h2 class="work__heading2">PLACE HOLDING TXT 3</h2>
             <p class = "work__description">(2023 - Present)<br>
                 PLACE HOLDING TEXT 4 <br>
                 <br>
+            </p>
+        </div>
+    </div>
+
+    <!--section Applications-->
+    <div class="apply" id="application">
+        <div class="apply__container">
+            <h1 class="apply__heading">Applications are Open!</h1>
+            <!--<button type="button">Click Me!</button-->
+            <button class="button button1">Click Here</button>
+             I'm creating a link to
+                <a href="file:///C:/Users/james/OneDrive/Documents/Driver%20Incentive%20Program%20Application(Sponsor2)%20-%20Google%20Docs.pdf">Sponsor Application</a>.
+              </p>
+            <p class="apply__description">PLACE HOLDING TEXT<br>
             </p>
         </div>
     </div>

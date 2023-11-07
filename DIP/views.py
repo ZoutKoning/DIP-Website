@@ -1,56 +1,75 @@
+
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from decouple import config
+from . import decode_jwt
 from django.http import JsonResponse
-import boto3
+import base64
+import requests
 
 def index(request):
-    return render(request, 'index.html')
+    try:
+        code = request.GET.get('code')
+        userData = getTokens(code)
+        context['name'] = userData['name']
+        context['status'] = 1
+        print(f'{context=}')
+        response = render(request, 'index.html', context)
+        response.set_cookie('sessiontoken',userData['id_token'], max_age=60*60*24,httponly=True)
+        return response
+    except:
+        token = getSession(request)
+        if token is not None:
+            userData = decode_jwt.lambda_handler(token,None)
+            context['name'] = userData['name']
+            context['status'] = 1
+            print(f'2){context=}')
+            return render(request, 'index.html',{'status':0})
 
-def login_view(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user:
-            login(request, user)
-            return redirect('index')  # redirect to the home page
 
-        return render(request, 'login.html', {'error_message': 'Invalid login credentials'})  # render the login template with an error
+def getTokens(code):
+    TOKEN_ENDPOINT = config('TOKEN_ENDPOINT')
+    REDIRECT_URL = config('REDIRECT_URL')
+    CLIENT_ID = config('CLIENT_ID')
+    CLIENT_SECRET = config('CLIENT_SECRET')
 
-    return render(request, 'login.html')  # render the login template
+    encodeData = base64.b64encode(bytes(f"{CLIENT_ID}:{CLIENT_SECRET}","ISO-8859-1")).decode("ascii")
 
-def signup_view(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-        group = request.POST['group']  # drivers, admins, or sponsors
+    headers = {
+        'Context-Type':'application/x-www.form-urlencoded',
+        'Authorization': f'Basic {encodeData}'
+    }
 
-        client = boto3.client('cognito-idp', region_name ='us-east-1')
-        try:
-            response = client.sign_up(
-                ClientId='24572ehjeno50ma5122ql3oumd',
-                Username=username,
-                Password=password,
-                UserAttributes=[
-                    {
-                        'Name': 'email',
-                        'Value': email
-                    }
-                ]
-            )
+    body = {
+        'grant-type': 'authorization_code',
+        'client_id': CLIENT_ID,
+        'code': 'cd2d9604-002e-4fa1-8d7e-d476fa485cdf',
+        'redirect_url': REDIRECT_URL,
+    }
 
-            # Add user to the specified group regardless of confirmation status
-            client.admin_add_user_to_group(
-                UserPoolId='us-east-1_mwt8Tw8od',
-                Username=username,
-                GroupName=group
-            )
+    requests.post(TOKEN_ENDPOINT, data-body, headers-headers)
 
-            return redirect('login_view')  # Redirect to login view after successful signup
+    id_token = response.json()['id_token']
 
-        except client.exceptions.ClientError as e:
-            return render(request, 'signup.html', {'error_message': 'Error signing up. Try again.'})
+    userData = decode_jwt.lambda_handler(id_token, None)
 
-    return render(request, 'signup.html')  # render the signup template
+    if not userData:
+        return False
 
+    user = {
+        'id_token': id_token,
+        'name': userData['name'],
+        'email': userData['email']
+    }
+    return user
+
+def getSession(request):
+    try:
+        response = request.COOKIES['sessiontoken']
+        return response
+    except:
+        return None
+
+def signout(request):
+    response = render(request, 'index.html',{'status': 0})
+    response.delete_cookie('sessiontoken')
+    return response

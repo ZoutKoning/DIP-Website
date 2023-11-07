@@ -5,9 +5,9 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DriverIncentiveProgram</title>
-            <link rel="stylesheet" href="styles.css">
+            <link rel="stylesheet" href="/static/styles.css">
     </head>
-    <body style="background-color:black;text-align:center">
+    <body>
     <!--section Navbar-->
     <nav class="navbar">
         <div class="navbar__container">
@@ -19,15 +19,15 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="index.html" class="navbar__links" id="home-page">Home</a> 
+                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
                 </li>
                 <li class="navbar__item">
-                    <a href="#about" class="navbar__links" id="about-page">About Page</a> 
+                    <a href="#about" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="wallet.html" class="navbar__links" id="wallet-page">My Wallet</a> 
+                    <a href="{% url 'wallet' %}" class="navbar__links" id="wallet-page">My Wallet</a>
                  </li>
-                 
+
             </ul>
 
         </div>
@@ -37,7 +37,7 @@
      <div class="aboutme" id = "about">
         <div class="aboutme__container">
             <h1 class="aboutme__heading">About</h1>
-            <p class = "aboutme__description">Current Sprint: 4 <br>
+            <p class = "aboutme__description">Current Sprint:<br>
                 Sprint Desc: Begin programming development <br>
             </p>
         </div>

@@ -107,6 +107,35 @@
     border-bottom: 4px solid rgb(123, 0, 255);
 }
 
+/* Dashboard Section */
+.dashboard{
+    background: #000000;
+    background: linear-gradient(to right, #161616, #000000);
+    padding: 50px 0;
+}
+.dashboard__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 90%;
+    text-align: center;
+    padding: 30px;
+}
+
+.dashboard__heading{
+    font-size: 100px;
+    margin-bottom: 24px;
+    color:#fff;
+}
+
+.dashboard__description{
+    font-size: 50px;
+    color: #fff;
+}
+
 /*About Section*/
 .aboutme{
     background: #000000;
@@ -170,7 +199,7 @@
     color:#fff;
 }
 
-/*Applcation section*/
+/* Application section */
 .apply{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);

@@ -32,13 +32,6 @@ class User (models.Model):
 
 class Driver (models.Model):
     user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
-
-
-
-
-
-
-
     wallet = models.CharField(max_length=250)
 
 class Sponsor (models.Model):

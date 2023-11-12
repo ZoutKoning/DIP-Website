@@ -17,3 +17,7 @@ def sponsors(request):
 # Driver application(PDF) papge
 def drivers(request):
     return render(request, "drivers.html")
+# Dashbaord page
+def dashboard(request):
+    return render(request, "dashboard.html")
+

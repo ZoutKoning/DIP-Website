@@ -1,0 +1,83 @@
+<!--Dashbaord page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+        <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                   <a href="#home" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="login.html" class="navbar__links">Log In</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="#application" class="navbar__links" id="application-page">Apply Here</a>
+                 </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="dashboard" id="dash">
+        <div class="dashboard__container_left">
+            <!--CHANGE REQUIRED: Display username of user that is signed in-->
+            <h1 class="dashboard__heading">Username</h1>
+            <!--CHANGE REQUIRED: Display username of user that is signed in-->
+            <h2 class="dashboard__heading2">Role</h2>
+
+            <!--DRIVER VIEW ONLY-->
+            <!--Sponsor Card list group-->
+            <h3 class="dashboard__heading2">My Sponsors</h3>
+            <nav>
+                <ul class="list-group">
+                    <li class="card">
+                        <div class="card__container">
+                            <div class="card-body">
+                            <h5 class="card-title">sponsor</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card__container">
+                            <div class="card-body">
+                            <h5 class="card-title">sponsor</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card">
+                        <div class="card__container">
+                            <div class="card-body">
+                            <h5 class="card-title">Sponsor</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</body>
+</html>

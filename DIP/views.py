@@ -42,7 +42,7 @@ def getTokens(code):
     body = {
         'grant-type': 'authorization_code',
         'client_id': CLIENT_ID,
-        'code': 'cd2d9604-002e-4fa1-8d7e-d476fa485cdf',
+        'code': code,
         'redirect_url': REDIRECT_URL,
     }
 

@@ -25,19 +25,17 @@
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
+                 <!--Wallet will appear only once signed in-->
                  <li class="navbar__item">
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="login.html" class="navbar__links">Log In</a>
+                    <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/login?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=http%3A%2F%2Flocalhost%3A63342%2FDIP-Website%2Ftemplates%2Fdashboard.html%3F_ijt%3D7m1752ghi1cn4598f9g58uunpj%26_ij_reload%3DRELOAD_ON_SAVE" class="navbar__links">Log In</a>
                  </li>
                  <li class="navbar__item">
                     <a href="#application" class="navbar__links" id="application-page">Apply Here</a>
-                 </li>
-                 
-                 
+                 </li>  
             </ul>
-
         </div>
     </nav>
 
@@ -78,13 +76,17 @@
     <div class="apply" id="application">
         <div class="apply__container">
             <h1 class="apply__heading">Applications are Open!</h1>
-             <p>
-                <a href="{%url 'sponsors' %}" class="navbar__links" >Sponsors</a>
-              </p>
-            <p>
-                <a href="{%url 'drivers' %}" class="navbar__links" >Drivers</a>
-              </p>
-            <p class="apply__description">PLACE HOLDING TEXT<br>
+            <h2 class="apply__subheading">
+                <p class="card">
+                    <a href="{%url 'sponsors' %}" class="navbar__links" >sponsor application</a>
+                </p>
+            </h2>
+
+            <h3 class="apply__subheading">
+                <p class="card">
+                    <a href="{%url 'drivers' %}" class="navbar__links" >driver application</a>
+                </p>
+            </h3>
             </p>
         </div>
     </div>

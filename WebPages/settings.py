@@ -123,13 +123,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-<<<<<<< HEAD
 STATICFILES_DIRS = [ BASE_DIR / "static", ]
-=======
+
 STATICFILES_DIRS = [
     BASE_DIR / "/static",
-]
->>>>>>> 017a3293a88950ca50f922f4358478483b7426c1
+    ]
 
 STATIC_ROOT = 'DIP-Website/static'
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static/')

@@ -9,5 +9,6 @@ urlpatterns = [
     path('wallet/', views.wallet, name ="wallet"),
     #URL path link to Application page(s)
     path('sponsors/', views.sponsors, name="sponsors"), #sponsor application
-    path('drivers/', views.drivers, name="drivers") #driver applicaiton
+    path('drivers/', views.drivers, name="drivers"), #driver applicaiton
+    path('dashboard/', views.dashboard, name="dashboard")
 ]

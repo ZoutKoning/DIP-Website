@@ -28,3 +28,19 @@ class User (models.Model):
     user_Password = models.CharField(max_length= 250)
     user_LoginName = models.CharField(max_length= 250)
     user_Type = models.CharField(max_length=1)
+
+
+
+class Driver (models.Model):
+    user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+    wallet = models.CharField(max_length=250)
+
+class Sponsor (models.Model):
+     user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+     sponsorCo = models.CharField(max_length=250)
+
+
+class Admin(models.Model):
+    user_ID = models.ForeignKey(User,on_delete=models.CASCADE)
+    reportType = models.CharField(max_length=250)
+

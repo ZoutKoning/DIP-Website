@@ -135,6 +135,7 @@
 .dashboard__heading2{
     font-size: 25px;
     margin-bottom: 15px;
+    margin-top: 10px;
     color:#fff;
     
 }
@@ -220,16 +221,23 @@
     justify-content: center;
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     height: 90%;
     text-align: center;
-    padding: 30px;
+    padding: 30px 30px;
 }
 
 .apply__heading{
     font-size: 50px;
     margin-bottom: 24px;
     color: #fff;
+}
+
+.apply__subheading{
+    font-size: 25px;
+    margin-bottom: 15px;
+    color: #fff;
+    padding: 25px;
 }
 
 .apply__description{
@@ -274,16 +282,3 @@
     align-items: flex-start;
     text-align: left;
   }
-/* CSS for lists
-ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  ul li {
-    border: 1px solid #ddd;
-    margin-top: 5px; 
-    background-color: #f6f6f6;
-    padding: 12px;
-  }*/

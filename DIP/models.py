@@ -22,7 +22,7 @@ class User (models.Model):
 class User (models.Model):
 
     user_ID = models.IntegerField(primary_key=True)
-
+    
     user_FName = models.CharField(max_length = 250)
     user_LName = models.CharField(max_length= 250)
     user_Password = models.CharField(max_length= 250)

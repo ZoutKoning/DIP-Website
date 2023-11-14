@@ -1,20 +1,26 @@
 from django.db import models
 from django.urls import reverse
-
+from datetime import date
+from django.utils import timezone
 # Create your models here
 
 class DIP (models.Model):
     title = models.CharField(max_length=250)
     body = models.TextField()
 
+def start_date(self):
+    started = date(2023, 9, 5)
+    return started
+        
+def current_date(self):
+    current = timezone.now().date()
+    return current
+
 class Sprint (models.Model):
-    sprint = models.CharField(max_length=250, help_text= 'current sprint')
-    sprint_info = models.TextField()
-    def __str__(self):
-        """string for sprint"""
-        return f' {self.sprint},{self.sprint_info}'
-
-
+    def current_sprint(self, start_date, current_date):
+        sprint_num = (current_date - start_date) // 7
+        return sprint_num
+    
 class User (models.Model):
 
     user_ID = models.IntegerField(primary_key=True)

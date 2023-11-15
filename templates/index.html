@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriverIncentiveProgram</title>
-    <link rel="stylesheet" href="static/styles.css"> 
+    <link rel="stylesheet" href="/static/styles.css">
 
 </head>
 
@@ -27,15 +26,16 @@
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
-                 <!--Wallet will appear only once signed in-->
+                 <!-- CHANGE REQUIRED -->
+                <!--Wallet should NOT appear on index page should only be available in dashboard -->
                  <li class="navbar__item">
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/login?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=http%3A%2F%2Flocalhost%3A63342%2FDIP-Website%2Ftemplates%2Fdashboard.html%3F_ijt%3D7m1752ghi1cn4598f9g58uunpj%26_ij_reload%3DRELOAD_ON_SAVE" class="navbar__links">Log In</a>
+                     <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/login?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fwww.espn.com%2F" class="navbar__links">Sign In/Sign Up</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="#application" class="navbar__links" id="application-page">Apply Here</a>
+                    <a href="{%url 'application' %}" class="navbar__links" id="application-page">Apply Here</a>
                  </li>  
             </ul>
         </div>

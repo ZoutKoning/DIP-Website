@@ -4,6 +4,8 @@ from decouple import config
 from . import decode_jwt
 import base64
 import requests
+from . import models
+
 # Home page
 def index(request):
     context = {}

@@ -8,7 +8,7 @@ class DIP (models.Model):
     body = models.TextField()
 
 class Sprint (models.Model):
-    start_date = models.DateTimeField()
+    start_date = models.DateTimeField(auto_now_add=True)
     sprint = models.CharField(max_length=250, help_text= 'current sprint')
     sprint_info = models.TextField()
     def __str__(self):

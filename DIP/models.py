@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse
-
+import datetime
 # Create your models here
 
 class DIP (models.Model):
@@ -8,12 +8,12 @@ class DIP (models.Model):
     body = models.TextField()
 
 class Sprint (models.Model):
+    start_date = models.DateTimeField(auto_now_add=True)
     sprint = models.CharField(max_length=250, help_text= 'current sprint')
     sprint_info = models.TextField()
     def __str__(self):
         """string for sprint"""
         return f' {self.sprint},{self.sprint_info}'
-
 
 class User (models.Model):
 
@@ -26,3 +26,8 @@ class User (models.Model):
     user_Type = models.CharField(max_length=1)
 
 
+# Model for USER SIGN UP.
+
+class MyModel(models.Model):
+    fullname = models.CharField(max_length=200)
+    mobile_number = models.IntegerField()

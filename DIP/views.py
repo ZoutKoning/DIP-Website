@@ -6,7 +6,7 @@ import base64
 import requests
 from .models import MyModel
 from .forms import MyForm
-
+from . models import mysprint
 
 # Home page
 def index(request):
@@ -33,7 +33,9 @@ def index(request):
 
 # About page
 def about(request):
-    return render(request, "about.html")
+    sprintInfo = mysprint.objects.all()
+
+    return render(request, "about.html",{'sprintInfo':sprintInfo})
 
 
 # Wallet page

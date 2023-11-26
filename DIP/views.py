@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from decouple import config
+#from decouple import config
 from . import decode_jwt
 import base64
 import requests
@@ -9,25 +9,7 @@ from .forms import MyForm
 
 # Home page
 def index(request):
-    context = {}
-    try:
-        code = request.GET.get('code')
-        userData = getTokens(code)
-        context['name'] = userData['name']
-        context['status'] = 1
-        print(f'{context=}')
-        response = render(request, 'index.html', context)
-        response.set_cookie('sessiontoken', userData['id_token'], max_age=60 * 60 * 24, httponly=True)
-        return response
-    except:
-        token = getSession(request)
-        if token is not None:
-            userData = decode_jwt.lambda_handler(token, None)
-            context['name'] = userData['name']
-            context['status'] = 1
-            print(f'2){context=}')
-            return render(request, 'index.html', context)
-        return render(request, 'index.html', {'status': 0})
+        return render(request, 'index.html')
 
 
 # About page

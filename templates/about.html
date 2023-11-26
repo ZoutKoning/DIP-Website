@@ -5,7 +5,12 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>DriverIncentiveProgram</title>
-            <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="/static/styles.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
     </head>
     <body>
 
@@ -37,15 +42,52 @@
      <!-- section About Page-->
      <div class="aboutme" id = "about">
         <div class="aboutme__container">
-            <h1 class="aboutme__heading">About</h1>
+            <h1 class="aboutme__heading">About Page</h1>
+            <h2 class ="aboutme__heading">Team Members</h2>
+            <h3 class="aboutme__heading">Jalen Barnes, James Barr, Jonathan Moore, Joseph Suter</h3>
         </div>
-        <br></br>
+        <br/>
+
         <div class="aboutme__description">
-            <p>
-                hello
+      {% for sprint in sprintInfo %}
+        <div class="card">
+          <div class="card-header">
+              Sprint Info
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Team Number: {{sprint.teamNum}}</h5>
+            <p class="card-text">
+             <ul>
+             <li> Sprint Version: {{sprint.versNum}}</li>
+             <li>Sprint Release Date: {{sprint.releaseDate}}</li>
+             <li>Sprint Description: {{sprint.prodDesc}}</li>
+            </ul>
+             <br/>
             </p>
+          </div>
+        </div>
+       {% endfor %}
         </div>
 
     </div>
+
+    <div class = "footerContainer">
+    <div class = "socialIcons">
+        <a href=""><i class="fa-brands fa-facebook"></i></a>
+        <a href=""><i class="fa-brands fa-instagram"></i></a>
+        <a href=""><i class="fa-brands fa-twitter"></i></a>
+        <a href=""><i class="fa-brands fa-google-plus"></i></a>
+        <a href=""><i class="fa-brands fa-youtube"></i></a>
+
+    </div>
+    <div class = "footerBottom">
+        <p>Copyright &copy;2023</p>
+    </div>
+    </div>
+
+
+
+
+
 </body>
 </html>

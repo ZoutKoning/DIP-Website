@@ -31,3 +31,12 @@ class User (models.Model):
 class MyModel(models.Model):
     fullname = models.CharField(max_length= 200)
     mobile_number = models.IntegerField()
+
+class mysprint(models.Model):
+    teamNum = models.IntegerField()
+    versNum = models.CharField(max_length=250)
+    releaseDate = models.CharField(max_length=250)
+    prodDesc = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.versNum

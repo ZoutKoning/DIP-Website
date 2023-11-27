@@ -13,5 +13,8 @@ urlpatterns = [
     path('drivers/', views.drivers, name="drivers"), #signup page
     #url(r'form', views.drivers, name='form'),
     path('dashboard/', views.dashboard, name="dashboard")
-    #checking things go usless comment
+    # URL path to the catalog
+    path('catalog/', views.catalog, name="catalog"),
+    # URL path to the cart
+    path('cart/', views.cart, name="cart")
 ]

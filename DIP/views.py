@@ -4,8 +4,8 @@ from decouple import config
 from . import decode_jwt
 import base64
 import requests
-from .models import MyModel
-from .forms import MyForm
+from .models import NewUser
+from .forms import NewUserForm
 
 
 # Home page
@@ -46,22 +46,26 @@ def sponsors(request):
     return render(request, "sponsors.html")
 
 
-# Signup page
 def drivers(request):
-    if request.method == "POST":
-        form = MyForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else:
-            form = MyForm()
-    return render(request, "drivers.html", {'form': form})
+    return render(request, "drivers.html")
 
 
 # Dashboard page
 def dashboard(request):
-    return render(request, "dashboard.html")
+    return render(request, 'dashboard.html')
 
 
+# Sign In/Up page
+def login(request):
+    return render(request, 'login.html')
+
+
+def signup(request):
+    form = NewUserForm
+    return render(request, 'signup.html', {'form':form})
+
+
+'''
 def getTokens(code):
     TOKEN_ENDPOINT = config('TOKEN_ENDPOINT')
     REDIRECT_URL = config('REDIRECT_URL')
@@ -111,3 +115,5 @@ def signout(request):
     response = render(request, 'index.html', {'status': 0})
     response.delete_cookie('sessiontoken')
     return response
+
+'''

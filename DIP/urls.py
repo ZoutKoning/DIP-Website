@@ -10,5 +10,7 @@ urlpatterns = [
     #URL path link to Application page(s)
     path('sponsors/', views.sponsors, name="sponsors"), #sponsor application
     path('drivers/', views.drivers, name="drivers"), #driver applicaiton
-    path('dashboard/', views.dashboard, name="dashboard")
+    path('dashboard/', views.dashboard, name="dashboard"),
+    path('catalog/', views.catalog, name='catalog'),
+    path('cart/', views.cart, name='cart')
 ]

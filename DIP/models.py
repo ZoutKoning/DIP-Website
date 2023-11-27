@@ -38,6 +38,24 @@ class User(models.Model):
     #models.CharField(max_length=250)
     user_LoginName = NewUser.username
 
+<<<<<<< HEAD
+
+# Model for USER SIGN UP.
+
+class MyModel(models.Model):
+    fullname = models.CharField(max_length=200)
+    mobile_number = models.IntegerField()
+
+class mysprint(models.Model):
+    teamNum = models.IntegerField()
+    versNum = models.CharField(max_length=250)
+    releaseDate = models.CharField(max_length=250)
+    prodDesc = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.versNum
+=======
         #models.CharField(max_length=250)
     user_Type = NewUser.
     #models.CharField(max_length=1)
+>>>>>>> b5a94fd0b4f6b2f89b57f83a849ec2c8fe0c198c

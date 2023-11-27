@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from decouple import config
-from . import decode_jwt
-import base64
 import requests
 # imports for forms
 from .models import NewUser

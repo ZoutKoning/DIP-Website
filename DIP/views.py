@@ -1,9 +1,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from decouple import config
 from . import decode_jwt
 import base64
 import requests
+# imports for forms
 from .models import NewUser
 from .forms import NewUserForm
 
@@ -61,8 +63,17 @@ def login(request):
 
 
 def signup(request):
-    form = NewUserForm
-    return render(request, 'signup.html', {'form':form})
+    submitted = False
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login?submitted=True')
+    else:
+        form = NewUserForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'signup.html', {'form': form, 'submitted': submitted})
 
 
 '''

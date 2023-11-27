@@ -10,5 +10,9 @@ urlpatterns = [
     path('signin.html', views.signin, name="signin"),
     path('sponsors/', views.sponsors, name="sponsors"),
     path('drivers/', views.drivers, name="drivers"),
-    path('dashboard/', views.dashboard, name="dashboard")
+    path('dashboard/', views.dashboard, name="dashboard"),
+    # URL path to the catalog
+    path('catalog/', views.catalog, name="catalog"),
+    # URL path to the cart
+    path('cart/', views.cart, name="cart")
 ]

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        a {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #0d6efd;
+        }
+        .product {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 10px 0;
+            padding: 15px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+        }
+        .product img {
+            max-width: 100px;
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        .product h3 {
+            margin: 0;
+            color: #333;
+        }
+        .product p {
+            margin: 5px 0;
+        }
+        button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin-left: auto;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c82333;
+        }
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <a href="{%url 'catalog' %}">Back to the Catalog</a>
+    <div id="cart-container">
+        <!-- Cart items will be loaded here -->
+    </div>
+    <div class="total-price">
+        Total Points: <span id="total-price">0</span>
+    </div>
+
+    <script>
+        function loadCartItems() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const container = document.getElementById('cart-container');
+            let totalPrice = 0;
+
+            for (const [id, item] of Object.entries(cart)) {
+                totalPrice += item.price * item.quantity;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'product';
+                itemDiv.innerHTML = `
+                <div class="product-image">
+                    <img src="${item.image}" alt="Product Image">
+                </div>
+                <div class="product-details">
+                    <h3>${item.title}</h3>
+                    <p class="product-price">Points: ${item.price.toFixed(2)}</p>
+                    <p class="product-quantity">Quantity: ${item.quantity}</p>
+                </div>
+                <div class="product-actions">
+                    <button onclick="removeItem('${id}')">Remove</button>
+                </div>
+                `;
+                container.appendChild(itemDiv);
+            }
+
+            document.getElementById('total-price').innerText = totalPrice.toFixed(2);
+        }
+
+        function removeItem(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            delete cart[productId];
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload(); // Reload the page to update the cart display
+        }
+
+        document.addEventListener('DOMContentLoaded', loadCartItems);
+    </script>
+</body>
+</html>

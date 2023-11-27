@@ -12,25 +12,7 @@ from .forms import NewUserForm
 
 # Home page
 def index(request):
-    context = {}
-    try:
-        code = request.GET.get('code')
-        userData = getTokens(code)
-        context['name'] = userData['name']
-        context['status'] = 1
-        print(f'{context=}')
-        response = render(request, 'index.html', context)
-        response.set_cookie('sessiontoken', userData['id_token'], max_age=60 * 60 * 24, httponly=True)
-        return response
-    except:
-        token = getSession(request)
-        if token is not None:
-            userData = decode_jwt.lambda_handler(token, None)
-            context['name'] = userData['name']
-            context['status'] = 1
-            print(f'2){context=}')
-            return render(request, 'index.html', context)
-        return render(request, 'index.html', {'status': 0})
+    return render(request, "index.html")
 
 
 # About page
@@ -57,6 +39,16 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 
+
+# Catalog page
+def catalog(request):
+    return render(request, "catalog.html")
+
+# Page that loads the cart
+def cart(request):
+    return render(request, "cart.html")
+
+  
 # Sign In/Up page
 def login(request):
     return render(request, 'login.html')

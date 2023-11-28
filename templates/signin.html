@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriverIncentiveProgram</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+<body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                   <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
+                 </li>
+            </ul>
+        </div>
+    </nav>
+
+     <div class="work" id="signup">
+        <div class="work__container">
+            <h1 class="work__heading">Sign Up Form</h1>
+            <br/><br/>
+            {% if submitted %}
+                Thank you for joining the DIP!
+            {% else %}
+                <form action="" method=POST>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit" class="btn btn-secondary">
+                </form>
+            {% endif %}
+        </div>
+     </div>
+</body>
+</html>

@@ -31,13 +31,21 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_New = models.ForeignKey(NewUser, blank=True, null=True)
+    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete=True)
     user_FName = models.CharField(max_length=250)
     user_LName = models.CharField(max_length=250)
     user_Password = NewUser.password
     #models.CharField(max_length=250)
     user_LoginName = NewUser.username
 
-        #models.CharField(max_length=250)
-    user_Type = NewUser.
-    #models.CharField(max_length=1)
+
+class mysprint(models.Model):
+    teamNum = models.IntegerField()
+    versNum = models.CharField(max_length=250)
+    releaseDate = models.CharField(max_length=250)
+    prodDesc = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.versNum
+
+

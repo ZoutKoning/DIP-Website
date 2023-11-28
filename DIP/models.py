@@ -31,14 +31,14 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_New = models.ForeignKey(NewUser, blank=True, null=True)
+    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete = models.CASCADE)
     user_FName = models.CharField(max_length=250)
     user_LName = models.CharField(max_length=250)
     user_Password = NewUser.password
     #models.CharField(max_length=250)
     user_LoginName = NewUser.username
 
-<<<<<<< HEAD
+
 
 # Model for USER SIGN UP.
 
@@ -54,8 +54,5 @@ class mysprint(models.Model):
 
     def __str__(self):
         return self.versNum
-=======
-        #models.CharField(max_length=250)
-    user_Type = NewUser.
-    #models.CharField(max_length=1)
->>>>>>> b5a94fd0b4f6b2f89b57f83a849ec2c8fe0c198c
+
+

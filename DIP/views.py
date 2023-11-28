@@ -3,16 +3,15 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from decouple import config
 import requests
-<<<<<<< HEAD
+
 from .models import MyModel
-from .forms import MyForm
+#from .forms import MyForm
 from . models import mysprint
-=======
+
 # imports for forms
 from .models import NewUser
 from .forms import NewUserForm
 
->>>>>>> b5a94fd0b4f6b2f89b57f83a849ec2c8fe0c198c
 
 # Home page
 def index(request):
@@ -60,7 +59,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def signup(request):
+def signin(request):
     submitted = False
     if request.method == "POST":
         form = NewUserForm(request.POST)

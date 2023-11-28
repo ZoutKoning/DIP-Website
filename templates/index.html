@@ -35,23 +35,17 @@
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
-
-                 <!-- CHANGE REQUIRED -->
-                <!--Wallet should NOT appear on index page should only be available in dashboard -->
                  <li class="navbar__item">
-                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
-                 </li>
-                 <li class="navbar__item">
-                     <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/login?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fteam05.cpsc4911.com%2F" class="navbar__links">Sign In/Sign Up</a>
+                    <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
                  </li>
 
                  <li class="navbar__item">
-
 			<a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
                  </li>  
             </ul>
         </div>
     </nav>
+  
     <!--section hero/Home-->
     <div class="hero" id="home">
         <div class="hero__container">
@@ -79,7 +73,6 @@
             </p>
         </div>
     </div>
-
 
 </body>
 </html>

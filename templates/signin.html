@@ -33,22 +33,20 @@
         </div>
     </nav>
 
-    <div class="aboutme" id = "Login">
-        <div class="aboutme__container">
-            <h1 class="aboutme__heading">New User?</h1>
-            <h2 class="apply__subheading">
-                <p class="card">
-                    <a href="{%url 'signup' %}" class="navbar__links" >Sign Up</a>
-                </p>
-            </h2>
-            <h3 class ="aboutme__heading">Returning User?</h3>
-            <h4 class="apply__subheading">
-                <p class="card">
-                    <a href="{%url 'signin' %}" class="navbar__links" >Sign In</a>
-                </p>
-            </h4>
+     <div class="work" id="signup">
+        <div class="work__container">
+            <h1 class="work__heading">Sign Up Form</h1>
+            <br/><br/>
+            {% if submitted %}
+                Thank you for joining the DIP!
+            {% else %}
+                <form action="" method=POST>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit" class="btn btn-secondary">
+                </form>
+            {% endif %}
         </div>
-        <br/>
-    </div>
+     </div>
 </body>
 </html>

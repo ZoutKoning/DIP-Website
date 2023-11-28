@@ -1,39 +1,28 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from decouple import config
-from . import decode_jwt
-import base64
-import requests
+from django.http import HttpResponseRedirect
+#imports for forms
+#from decouple import config
+#from . import decode_jwt
+#import base64
+#import requests
+#from .forms import MyForm
+from .models import NewUser
+from .forms import NewUserForm
 from .models import MyModel
-from .forms import MyForm
-
+from . models import mysprint
 
 # Home page
 def index(request):
-    context = {}
-    try:
-        code = request.GET.get('code')
-        userData = getTokens(code)
-        context['name'] = userData['name']
-        context['status'] = 1
-        print(f'{context=}')
-        response = render(request, 'index.html', context)
-        response.set_cookie('sessiontoken', userData['id_token'], max_age=60 * 60 * 24, httponly=True)
-        return response
-    except:
-        token = getSession(request)
-        if token is not None:
-            userData = decode_jwt.lambda_handler(token, None)
-            context['name'] = userData['name']
-            context['status'] = 1
-            print(f'2){context=}')
-            return render(request, 'index.html', context)
-        return render(request, 'index.html', {'status': 0})
+        return render(request, 'index.html')
+
 
 
 # About page
 def about(request):
-    return render(request, "about.html")
+    sprintInfo = mysprint.objects.all()
+
+    return render(request, "about.html", {'sprintInfo': sprintInfo})
 
 
 # Wallet page
@@ -46,22 +35,49 @@ def sponsors(request):
     return render(request, "sponsors.html")
 
 
-# Signup page
 def drivers(request):
-    if request.method == "POST":
-        form = MyForm(request.POST)
-        if form.is_valid():
-            form.save()
-        else:
-            form = MyForm()
-    return render(request, "drivers.html", {'form': form})
+    return render(request, "drivers.html")
 
 
 # Dashboard page
 def dashboard(request):
-    return render(request, "dashboard.html")
+    return render(request, 'dashboard.html')
 
 
+# Catalog page
+def catalog(request):
+    return render(request, "catalog.html")
+
+
+# Page that loads the cart
+def cart(request):
+    return render(request, "cart.html")
+
+
+# Sign In/Up page
+def login(request):
+    return render(request, 'login.html')
+
+
+def signup(request):
+    submitted = False
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/login?submitted=True')
+    else:
+        form = NewUserForm
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'signup.html', {'form': form, 'submitted': submitted})
+
+
+def signin(request):
+    return render(request, 'signin.html')
+
+
+'''
 def getTokens(code):
     TOKEN_ENDPOINT = config('TOKEN_ENDPOINT')
     REDIRECT_URL = config('REDIRECT_URL')
@@ -111,3 +127,5 @@ def signout(request):
     response = render(request, 'index.html', {'status': 0})
     response.delete_cookie('sessiontoken')
     return response
+
+'''

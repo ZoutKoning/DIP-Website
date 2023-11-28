@@ -1,3 +1,7 @@
+{% load static %}
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriverIncentiveProgram</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+    />
 
 </head>
 
@@ -27,11 +36,16 @@
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
+                    <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
+                 </li>
+
+                 <li class="navbar__item">
+			<a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
                  </li>  
             </ul>
         </div>
     </nav>
+  
     <!--section hero/Home-->
     <div class="hero" id="home">
         <div class="hero__container">

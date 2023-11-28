@@ -1,18 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
+#imports for forms
+#from decouple import config
+#from . import decode_jwt
+#import base64
+#import requests
+#from .forms import MyForm
 from .models import NewUser
 from .forms import NewUserForm
-from .models import mysprint
-
-# imports for forms
-from .models import NewUser
-from .forms import NewUserForm
-
+from .models import MyModel
+from . models import mysprint
 
 # Home page
 def index(request):
-    return render(request, "index.html")
+        return render(request, 'index.html')
+
 
 
 # About page

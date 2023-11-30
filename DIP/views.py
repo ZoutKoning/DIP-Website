@@ -1,28 +1,29 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from decouple import config
-import requests
-
-from .models import MyModel
+#imports for forms
+#from decouple import config
+#from . import decode_jwt
+#import base64
+#import requests
 #from .forms import MyForm
-from . models import mysprint
-
-# imports for forms
 from .models import NewUser
 from .forms import NewUserForm
+from .models import MyModel
+from . models import mysprint
 
 
 # Home page
 def index(request):
-    return render(request, "index.html")
+        return render(request, 'index.html')
+
 
 
 # About page
 def about(request):
     sprintInfo = mysprint.objects.all()
 
-    return render(request, "about.html",{'sprintInfo':sprintInfo})
+    return render(request, "about.html", {'sprintInfo': sprintInfo})
 
 
 # Wallet page
@@ -44,16 +45,16 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 
-
 # Catalog page
 def catalog(request):
     return render(request, "catalog.html")
+
 
 # Page that loads the cart
 def cart(request):
     return render(request, "cart.html")
 
-  
+
 # Sign In/Up page
 def login(request):
     return render(request, 'login.html')
@@ -71,6 +72,10 @@ def signin(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'signup.html', {'form': form, 'submitted': submitted})
+
+
+def signin(request):
+    return render(request, 'signin.html')
 
 
 '''

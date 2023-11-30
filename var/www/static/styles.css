@@ -139,11 +139,50 @@
     color:#fff;
     
 }
-/*Dashbaords*/
+
 .dashboard__description{
     font-size: 50px;
     color: #fff;
 }
+
+/* Sign up Section */
+.signup{
+    background: #000000;
+    background: linear-gradient(to right, #161616, #000000);
+    padding: 50px 0;
+}
+.signup__container_left{
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 90%;
+    text-align: left;
+    padding: 30px;
+}
+
+/* sign up heading text setting */
+.signup__heading{
+    font-size: 30px;
+    margin-bottom: 15px;
+    color:#fff;
+}
+
+.signup__heading2{
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-top: 10px;
+    color:#fff;
+
+}
+
+.signup__description{
+    font-size: 50px;
+    color: #fff;
+}
+
 
 /*About Section*/
 .aboutme{

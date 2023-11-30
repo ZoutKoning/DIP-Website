@@ -30,13 +30,15 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete=True)
+    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete = models.CASCADE)
     user_FName = models.CharField(max_length=250)
     user_LName = models.CharField(max_length=250)
     user_Password = NewUser.password
     #models.CharField(max_length=250)
     user_LoginName = NewUser.username
 
+
+# Model for USER SIGN UP.
 
 class MyModel(models.Model):
     fullname = models.CharField(max_length= 200)

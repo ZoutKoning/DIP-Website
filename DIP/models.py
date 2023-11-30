@@ -9,10 +9,9 @@ class DIP(models.Model):
     title = models.CharField(max_length=250)
     body = models.TextField()
 
-
-class Sprint(models.Model):
-    start_date = models.DateTimeField()
-    sprint = models.CharField(max_length=250, help_text='current sprint')
+class Sprint (models.Model):
+    start_date = models.DateTimeField(auto_now_add=True)
+    sprint = models.CharField(max_length=250, help_text= 'current sprint')
     sprint_info = models.TextField()
 
     def __str__(self):
@@ -31,12 +30,19 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete=models.CASCADE)
+    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete = models.CASCADE)
     user_FName = NewUser.firstName
     user_LName = NewUser.lastName
     user_Password = NewUser.password
     user_LoginName = NewUser.username
     user_Role = NewUser.role
+
+
+# Model for USER SIGN UP.
+
+class MyModel(models.Model):
+    fullname = models.CharField(max_length= 200)
+    mobile_number = models.IntegerField()
 
 
 class mysprint(models.Model):

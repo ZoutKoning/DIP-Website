@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from .models import NewUser
-from .forms import NewUserForm
+#imports for forms
+#from decouple import config
+#from . import decode_jwt
+#import base64
+#import requests
+#from .forms import MyForm
+from .models import MyModel
 from .models import mysprint
 
 # imports for forms
@@ -14,7 +19,8 @@ from .forms import ReturnUser
 
 # Home page
 def index(request):
-    return render(request, "index.html")
+        return render(request, 'index.html')
+
 
 
 # About page
@@ -58,7 +64,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def signup(request):
+def signin(request):
     submitted = False
     if request.method == "POST":
         form = NewUserForm(request.POST)

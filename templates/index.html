@@ -1,5 +1,7 @@
 {% load static %}
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +37,15 @@
                  </li>
                  <li class="navbar__item">
                     <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
+                 </li>
+
+                 <li class="navbar__item">
+			<a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
                  </li>  
             </ul>
         </div>
     </nav>
+  
     <!--section hero/Home-->
     <div class="hero" id="home">
         <div class="hero__container">
@@ -67,16 +74,5 @@
             </p>
         </div>
     </div>
-
-    <!-- section About Page-->
-    <div class="aboutme" id = "about">
-        <div class="aboutme__container">
-            <h1 class="aboutme__heading">About</h1>
-            <p class = "aboutme__description">PLACE HOLDING TXT <br>
-                PLACE HOLDING TXT 2  <br>
-            </p>
-        </div>
-    </div>
-
 </body>
 </html>

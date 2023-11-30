@@ -23,20 +23,20 @@ class Sprint(models.Model):
 class NewUser(models.Model):
     firstName = models.CharField('first name', max_length=250)
     lastName = models.CharField('last name', max_length=250)
-    email = models.EmailField('email address')
+    email = models.EmailField('email')
     username = models.CharField('username', max_length=250)
     password = models.CharField('password', max_length=250)
-    role = models.CharField('role', max_length=1)
+    role = models.CharField('role', max_length=1, help_text='D(driver) S(sponsor) A(admin)')
 
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
     user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete=models.CASCADE)
-    user_FName = models.CharField(max_length=250)
-    user_LName = models.CharField(max_length=250)
+    user_FName = NewUser.firstName
+    user_LName = NewUser.lastName
     user_Password = NewUser.password
-    #models.CharField(max_length=250)
     user_LoginName = NewUser.username
+    user_Role = NewUser.role
 
 
 class mysprint(models.Model):

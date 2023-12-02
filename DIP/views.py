@@ -7,7 +7,6 @@ from django.http import HttpResponseRedirect
 #import base64
 #import requests
 #from .forms import MyForm
-from .models import MyModel
 from .models import mysprint
 
 # imports for forms
@@ -64,7 +63,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def signin(request):
+'''def signin(request):
     submitted = False
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -75,10 +74,10 @@ def signin(request):
         form = NewUserForm
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'signup.html', {'form': form, 'submitted': submitted})
+    return render(request, 'signup.html', {'form': form, 'submitted': submitted})'''
 
 
-def signin(request):
+'''def signup(request):
     submitted = False
     if request.method == "POST":
         form = ReturnUser(request.POST)
@@ -92,6 +91,6 @@ def signin(request):
         form = ReturnUser
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'signin.html', {'form': form, 'submitted': submitted})
+    return render(request, 'signin.html', {'form': form, 'submitted': submitted})'''
 
 

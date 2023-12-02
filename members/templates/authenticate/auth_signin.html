@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriverIncentiveProgram</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+
+<body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                   <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="signin-page">Log-In</a>
+                     </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+     <div class="sign" id="signin">
+        <div class="sign__container">
+            <h1 class="sign__heading">Sign In</h1>
+            <br/><br/>
+                <form action="" method=POST>
+                    {% csrf_token %}
+                    <form>
+                      <div class="mb-3">
+                        <label for="exampleInputUsername" class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username">
+                      </div>
+                      <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password">
+                      </div>
+                        <div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% endif %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+            </div>
+     </div>
+</body>
+</html>

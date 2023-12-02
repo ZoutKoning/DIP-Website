@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'DIP',
     'DIP.apps.DipConfig',
+    #members,
+    'members'
 ]
 
 MIDDLEWARE = [

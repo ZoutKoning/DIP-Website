@@ -31,12 +31,11 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_New = models.ForeignKey(NewUser, blank=True, null=True, on_delete=models.CASCADE)
-    user_FName = NewUser.firstName
-    user_LName = NewUser.lastName
-    user_Password = NewUser.password
-    user_LoginName = NewUser.username
-    user_Role = NewUser.role
+    user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    #user_LName = NewUser.lastName
+    #user_Password = NewUser.password
+    #user_LoginName = NewUser.username
+    #user_Role = NewUser.role
 
 
 class mysprint(models.Model):

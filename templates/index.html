@@ -32,10 +32,15 @@
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-                 </li>
-                 <li class="navbar__item">
-                    <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
-                 </li>  
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="signin-page">Log-In</a>
+                     </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

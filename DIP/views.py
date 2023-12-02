@@ -9,7 +9,7 @@ from .models import mysprint
 from .models import NewUser
 from .forms import NewUserForm
 from .models import User
-from .forms import ReturnUser
+#from .forms import ReturnUser
 
 
 # Home page
@@ -76,10 +76,16 @@ def signin(request):
     submitted = False
     if request.method == "POST":
         form = ReturnUser(request.POST)
-        try:
-            p = UserInfo.objects.get(id=your_id)
-        except UserInfo.DoesNotExist:
-            raise forms.ValidationError("User not exist.")
-    return render(request, 'signin.html')
+        if form.is_valid():
+            try:
+                p = UserInfo.objects.get('user_Return.firstName')
+                return HttpResponseRedirect('/dashboard?submitted=True')
+            except UserInfo.DoesNotExist:
+                raise forms.ValidationError("User not exist.")
+    else:
+        form = ReturnUser
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'signin.html', {'form': form, 'submitted': submitted})
 
 

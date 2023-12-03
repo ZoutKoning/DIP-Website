@@ -146,13 +146,14 @@
 }
 
 /* Sign up Section */
-.signme{
+
+.signPage{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
     padding: 50px 0;
 }
 
-.signme__container{
+.signPage__container{
    display: flex;
    flex-direction: column;
     justify-content: center;
@@ -162,17 +163,18 @@
     height: 90%;
     text-align: center;
     padding: 30px;
+    color: #fff;
 }
 
-.signme__heading{
+.signPage__heading{
     font-size: 50px;
     margin-bottom: 24px;
     color: #fff;
 }
 
-.signme__description{
+.signPage__description{
     font-size: 25px;
-    color:#fff;
+    color: #fff;
 }
 
 
@@ -239,36 +241,7 @@
     color:#fff;
 }
 
-/*sign up/in */
-.sign{
-    padding: 100px 0;
-}
-.sign__container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 90%;
-    text-align: center;
-    padding: 30px;
-}
 
-.sign__heading{
-    font-size: 50px;
-    margin-bottom: 24px;
-    color: #fff;
-}
-.sign__heading2{
-    font-size: 25px;
-    margin-bottom: 15px;
-    color: #ffffff;
-}
-.sign__description{
-    font-size: 25px;
-    color: #ffffff;
-}
 /* Application section */
 .apply{
     background: #000000;

@@ -14,8 +14,12 @@ def login_user(request):
             login(request, user)
             return redirect('dashboard')
         else:
-            messages.success(request, "There was an error with your signin")
+            messages.success(request, ("There was an error with your signin. Please try again"))
             return redirect('login_user')
     else:
         return render(request, 'authenticate/auth_signin.html', {})
 
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')

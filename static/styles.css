@@ -146,41 +146,33 @@
 }
 
 /* Sign up Section */
-.signup{
+.signme{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
     padding: 50px 0;
 }
-.signup__container_left{
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:flex-start;
+
+.signme__container{
+   display: flex;
+   flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     height: 90%;
-    text-align: left;
+    text-align: center;
     padding: 30px;
 }
 
-/* sign up heading text setting */
-.signup__heading{
-    font-size: 30px;
-    margin-bottom: 15px;
-    color:#fff;
-}
-
-.signup__heading2{
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    color:#fff;
-
-}
-
-.signup__description{
+.signme__heading{
     font-size: 50px;
+    margin-bottom: 24px;
     color: #fff;
+}
+
+.signme__description{
+    font-size: 25px;
+    color:#fff;
 }
 
 
@@ -249,8 +241,6 @@
 
 /*sign up/in */
 .sign{
-    background: #fff;
-    background: linear-gradient(to right, #161616, #000000);
     padding: 100px 0;
 }
 .sign__container{
@@ -268,16 +258,16 @@
 .sign__heading{
     font-size: 50px;
     margin-bottom: 24px;
-    color: #000000;
+    color: #fff;
 }
 .sign__heading2{
     font-size: 25px;
     margin-bottom: 15px;
-    color: #000000;
+    color: #ffffff;
 }
 .sign__description{
     font-size: 25px;
-    color: #000000;
+    color: #ffffff;
 }
 /* Application section */
 .apply{

@@ -11,8 +11,7 @@ class NewUserForm(ModelForm):
         fields = ('firstName', 'lastName', 'email', 'username', 'password', 'role')
 
 
-
-class ReturnUser(ModelForm):
+'''class ReturnUserForm(ModelForm):
     class Meta:
         model = User
-        fields = ('user_LoginName','user_Password')
+        fields = ('user_Return.firstName')'''

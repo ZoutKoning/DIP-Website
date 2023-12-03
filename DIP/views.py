@@ -7,14 +7,13 @@ from django.http import HttpResponseRedirect
 #import base64
 #import requests
 #from .forms import MyForm
-from .models import MyModel
 from .models import mysprint
 
 # imports for forms
 from .models import NewUser
 from .forms import NewUserForm
 from .models import User
-from .forms import ReturnUser
+#from .forms import ReturnUser
 
 
 # Home page
@@ -64,7 +63,7 @@ def login(request):
     return render(request, 'login.html')
 
 
-def signin(request):
+'''def signin(request):
     submitted = False
     if request.method == "POST":
         form = NewUserForm(request.POST)
@@ -75,17 +74,23 @@ def signin(request):
         form = NewUserForm
         if 'submitted' in request.GET:
             submitted = True
-    return render(request, 'signup.html', {'form': form, 'submitted': submitted})
+    return render(request, 'signup.html', {'form': form, 'submitted': submitted})'''
 
 
-def signin(request):
+'''def signup(request):
     submitted = False
     if request.method == "POST":
         form = ReturnUser(request.POST)
-        try:
-            p = UserInfo.objects.get(id=your_id)
-        except UserInfo.DoesNotExist:
-            raise forms.ValidationError("User not exist.")
-    return render(request, 'signin.html')
+        if form.is_valid():
+            try:
+                p = UserInfo.objects.get('user_Return.firstName')
+                return HttpResponseRedirect('/dashboard?submitted=True')
+            except UserInfo.DoesNotExist:
+                raise forms.ValidationError("User not exist.")
+    else:
+        form = ReturnUser
+        if 'submitted' in request.GET:
+            submitted = True
+    return render(request, 'signin.html', {'form': form, 'submitted': submitted})'''
 
 

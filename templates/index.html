@@ -1,7 +1,4 @@
 {% load static %}
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,18 +31,21 @@
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-                 </li>
-                 <li class="navbar__item">
-                    <a href="{%url 'login' %}" class="navbar__links" id="application-page">Log-In</a>
-                 </li>
-
-                 <li class="navbar__item">
-			<a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
-                 </li>  
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="signin-page">Log-In</a>
+                     </li>
+                    <li class="navbar__item">
+                        <a href="{%url 'register_user' %}" class="navbar__links" id="SignUp-page">Sign-Up</a>
+                     </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
-  
     <!--section hero/Home-->
     <div class="hero" id="home">
         <div class="hero__container">
@@ -57,22 +57,33 @@
         </div>
     </div>
 
-    <!--section Applications-->
+    <!--section Applications -->
     <div class="apply" id="application">
         <div class="apply__container">
             <h1 class="apply__heading">Join Today!!!</h1>
             <h2 class="apply__subheading">
                 <p class="card">
-                    <a href="{%url 'signup' %}" class="navbar__links" >Sign Up!</a>
+                    <a href="{%url 'login_user' %}" class="navbar__links" >Sign Up!</a>
                 </p>
             </h2>
             <h3 class="apply__subheading">
                 <p class="card">
-                    <a href="{%url 'signin' %}" class="navbar__links" >Sign In!</a>
+                    <a href="{%url 'login_user' %}" class="navbar__links" >Sign In!</a>
                 </p>
             </h3>
             </p>
         </div>
     </div>
+
+    <!-- section About Page-->
+    <div class="aboutme" id = "about">
+        <div class="aboutme__container">
+            <h1 class="aboutme__heading">About</h1>
+            <p class = "aboutme__description">PLACE HOLDING TXT <br>
+                PLACE HOLDING TXT 2  <br>
+            </p>
+        </div>
+    </div>
+
 </body>
 </html>

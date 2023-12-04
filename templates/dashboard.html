@@ -28,7 +28,7 @@
                  <li class="navbar__item">
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
-                <li class="navbar__item">
+                 <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
                  {% if user.is_authenticated %}
@@ -40,6 +40,7 @@
             </ul>
         </div>
     </nav>
+
 
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">

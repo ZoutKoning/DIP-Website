@@ -1,4 +1,4 @@
-<!--Dashbaord page-->
+<!--Dashboard page-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Home</a>
+                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
@@ -29,17 +29,18 @@
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/signup?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=https%3A%2F%2F172.31.36.118" class="navbar__links">Log In</a>
-                 </li>
-                 <li class="navbar__item">
-                    <a href="{%url 'application' %}" class="navbar__links" id="application-page">Apply Here</a>
-                 </li>
-                 <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% endif %}
+
             </ul>
         </div>
     </nav>
+
 
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
@@ -79,7 +80,6 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
 </body>

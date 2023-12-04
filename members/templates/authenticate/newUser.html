@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriverIncentiveProgram</title>
+    <link rel="stylesheet" href="/static/styles.css">
+
+</head>
+<body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                   <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-Out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'register_user' %}" class="navbar__links" id="signin-page">Sign-Up</a>
+                     </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="signPage" id="newUserSignUp">
+        <div class="signPage__container">
+            {% if form.errors %}
+                <p>There was an error in your Sign-Up form.</p>
+            {% endif %}
+            <br><br/>
+            <div class="signPage__heading">Sign Up</div>
+            <form action="{%url 'register_user' %}" method=POST>
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br><br/>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+    <!--section Applications -->
+    <div class="apply" id="application">
+        <div class="apply__container">
+            <h1 class="apply__heading">Already have an Account?</h1>
+            <h2 class="apply__subheading">
+                <p class="card">
+                    <a href="{%url 'login_user' %}" class="navbar__links" >Sign-In</a>
+                </p>
+            </h2>
+        </div>
+    </div>
+</body>
+</html>

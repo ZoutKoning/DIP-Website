@@ -1,4 +1,4 @@
-<!--Dashbaord page-->
+<!--Dashboard page-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Home</a>
+                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
@@ -29,11 +29,14 @@
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
-                    <button type="button">Log Out</button>
-                 </li>
-                 <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% endif %}
+
             </ul>
         </div>
     </nav>
@@ -77,7 +80,6 @@
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
 </body>

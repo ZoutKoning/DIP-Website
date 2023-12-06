@@ -39,10 +39,12 @@
     <div class="work" id="wallet">
         <div class="work__container">
             <h1 class="work__heading">Wallet</h1>
-            <p class = "work__description"><br>
-                You have: 0 points. <br>
-                <br>
-            </p>
+            {% if wallet %}
+                <h1>{{ user.firstName }} {{ user.lastName }}'s Wallet</h1>
+                <p>Points: {{ wallet.points }}</p>
+            {% else %}
+                <p>Wallet information not available.</p>
+            {% endif %}
             <h2 class="work__heading">Point History</h2>
             <canvas id="myChart" style="background-color:white; width:100%;max-width:800px">
             </canvas>"

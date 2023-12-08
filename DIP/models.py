@@ -40,3 +40,7 @@ auditlog.register(mysprint)
 auditlog.register(User)
 auditlog.register(NewUser)
 auditlog.register(DIP)
+
+
+
+

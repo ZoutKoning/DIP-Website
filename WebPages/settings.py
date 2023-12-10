@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import django
+from django.utils.encoding import smart_str
+django.utils.encoding.smart_text = smart_str
 # import pymysql
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'DIP.apps.DipConfig',
     # members,
     'members',
-    "auditlog",
+    'auditlog',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,12 @@ STATIC_ROOT = 'var/www/static'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Audit Log version 3 statements
+#AUDITLOG_TWO_STEP_MIGRATION = True
+#AUDITLOG_USE_TEXT_CHANGES_IF_JSON_IS_NOT_PRESENT = True
+AUDITLOG_INCLUDE_TRACKING_MODELS = (
+    {
+        "model": "auth.User",
+    },
+    )

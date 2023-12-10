@@ -224,12 +224,13 @@
     height: 90%;
     text-align: center;
     padding: 30px;
+    color: #fff;
 }
 
 .work__heading{
     font-size: 50px;
     margin-bottom: 24px;
-    color: #ffffff;
+    color: #fff;
 }
 .work__heading2{
     font-size: 25px;
@@ -324,4 +325,10 @@
     font-size: 25px;
     font-color:#fff;
     text-align: center
+}
+
+.footer__description{
+    font-size: 25px;
+    font-color:#fff;
+    text-align: center;
 }

@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriverIncentiveProgram</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+    />
 
 </head>
 
@@ -26,77 +31,48 @@
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-                 </li>
-                 <!-- CHANGE REQUIRED -->
-                <!--Wallet should NOT appear on index page should only be available in dashboard -->
-                 <li class="navbar__item">
-                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
-                 </li>
-                 <li class="navbar__item">
-                     <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/login?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin+email+openid+profile&redirect_uri=https%3A%2F%2Fteam05.cpsc4911.com%2F" class="navbar__links">Sign In/Sign Up</a>
-                 </li>
-                 <li class="navbar__item">
-<<<<<<< HEAD
-			<a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
-=======
-                    <a href="{%url 'drivers' %}" class="navbar__links" id="application-page">Apply Here</a>
->>>>>>> cca0cd329a4fbbf75f1d333ecb13a90ead2eb30f
-                 </li>  
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="signin-page">Log-In</a>
+                     </li>
+                    <li class="navbar__item">
+                        <a href="{%url 'register_user' %}" class="navbar__links" id="SignUp-page">Sign-Up</a>
+                     </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
-
     <!--section hero/Home-->
     <div class="hero" id="home">
         <div class="hero__container">
             <h1 class="hero__heading">Welcome!</h1>
-            <p class="hero__description">(Place holder text: The Driver Incentive Program by Team: J-Unit) <br>
-                <img src="{% static 'SemiTruck.jpg' %}">
-                <!--<img src="SemiTruck.jpg">-->
+            <p class="hero__description">DIP is an incentive program for drivers <br>
+                which allows drivers to redeem rewards for practicing good driving behaviors! <br>
+                <img src="{%static 'SemiTruck.jpg' %}">
             </p>
         </div>
     </div>
 
-    <!-- section About Page-->
-    <div class="aboutme" id = "about">
-        <div class="aboutme__container">
-            <h1 class="aboutme__heading">About</h1>
-            <p class = "aboutme__description">PLACE HOLDING TXT <br>
-                PLACE HOLDING TXT 2  <br>
-            </p>
-        </div>
-    </div>
-
-    <!--section Wallet-->
-    <div class="work" id="project">
-        <div class="work__container">
-            <h1 class="work__heading">Wallet</h1>
-            <h2 class="work__heading2">PLACE HOLDING TXT 3</h2>
-            <p class = "work__description">(2023 - Present)<br>
-                PLACE HOLDING TEXT 4 <br>
-                <br>
-            </p>
-        </div>
-    </div>
-
-    <!--section Applications-->
+    <!--section Applications -->
     <div class="apply" id="application">
         <div class="apply__container">
-            <h1 class="apply__heading">Applications are Open!</h1>
+            <h1 class="apply__heading">Join Today!!!</h1>
             <h2 class="apply__subheading">
                 <p class="card">
-                    <a href="{%url 'sponsors' %}" class="navbar__links" >sponsor application</a>
+                    <a href="{%url 'login_user' %}" class="navbar__links" >Sign Up!</a>
                 </p>
             </h2>
-
             <h3 class="apply__subheading">
                 <p class="card">
-                    <a href="{%url 'drivers' %}" class="navbar__links" >driver application</a>
+                    <a href="{%url 'login_user' %}" class="navbar__links" >Sign In!</a>
                 </p>
             </h3>
             </p>
         </div>
     </div>
-
 </body>
 </html>

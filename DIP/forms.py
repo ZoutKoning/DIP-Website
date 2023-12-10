@@ -1,10 +1,17 @@
 from django import forms
-from .models import MyModel
-#user input forms here
+from django.forms import ModelForm
+from .models import NewUser
+from .models import User
 
-class MyForm (forms.ModelForm):
+
+# New User Form
+class NewUserForm(ModelForm):
     class Meta:
-        model = MyModel
-        fields = ["fullname", "mobile_number", ]
-        labels = {'fullname': "Name", "mobile_number": "Mobile Number", }
+        model = NewUser
+        fields = ('firstName', 'lastName', 'email', 'username', 'password', 'role')
 
+
+'''class ReturnUserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ('user_Return.firstName')'''

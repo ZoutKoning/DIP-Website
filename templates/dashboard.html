@@ -1,4 +1,4 @@
-<!--Dashbaord page-->
+<!--Dashboard page-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +20,7 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
                 </li>
                 <li class="navbar__item">
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
@@ -29,14 +29,18 @@
                     <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="https://dipteam5.auth.us-east-1.amazoncognito.com/signup?client_id=24572ehjeno50ma5122ql3oumd&response_type=code&scope=aws.cognito.signin.user.admin&redirect_uri=https%3A%2F%2F172.31.36.118" class="navbar__links">Log In</a>
+                    <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
-                 <li class="navbar__item">
-                    <a href="{%url 'application' %}" class="navbar__links" id="application-page">Apply Here</a>
-                 </li>
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% endif %}
+
             </ul>
         </div>
     </nav>
+
 
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
@@ -49,34 +53,33 @@
             <!--Sponsor Card list group-->
             <h3 class="dashboard__heading2">My Sponsors</h3>
             <nav>
-                <ul class="list-group">
+               <ul class="list-group">
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">YouTube</h5>
+                            <p class="card-text">How your driving skills help to advance both our platform and your own.</p>
                             </div>
                         </div>
                     </li>
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">Amazon</h5>
+                            <p class="card-text">Your driving will help our analytics for future vehicles and traffic capabilites.</p>
                             </div>
                         </div>
                     </li>
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">Sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">GitHub</h5>
+                            <p class="card-text">Over here we like numbers, drivers like you help us with that.</p>
                             </div>
                         </div>
                     </li>
                 </ul>
             </nav>
-
         </div>
     </div>
 </body>

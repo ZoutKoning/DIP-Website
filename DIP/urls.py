@@ -1,14 +1,17 @@
 from django.urls import path
 from . import views
+from django.contrib import messages
 urlpatterns = [
-    #URL path link to Index page ("home")
     path('', views.index, name="index"),
-    #URL path link to About Page
     path('about/', views.about, name="about"),
-    #URL path link to Wallet page
-    path('wallet/', views.wallet, name ="wallet"),
-    #URL path link to Application page(s)
-    path('sponsors/', views.sponsors, name="sponsors"), #sponsor application
-    path('drivers/', views.drivers, name="drivers"), #signup page
-    path('dashboard/', views.dashboard, name="dashboard")
+    path('wallet/', views.wallet, name="wallet"),
+    #path('login/', views.login, name="login"),
+    # path('signup.html', views.signin, name="signin"),
+    path('sponsors/', views.sponsors, name="sponsors"),
+    path('drivers/', views.drivers, name="drivers"),
+    path('dashboard/', views.dashboard, name="dashboard"),
+    # URL path to the catalog
+    path('catalog/', views.catalog, name="catalog"),
+    # URL path to the cart
+    path('cart/', views.cart, name="cart")
 ]

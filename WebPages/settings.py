@@ -142,3 +142,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #Audit Log version 3 statements
 #AUDITLOG_TWO_STEP_MIGRATION = True
 #AUDITLOG_USE_TEXT_CHANGES_IF_JSON_IS_NOT_PRESENT = True
+AUDITLOG_INCLUDE_TRACKING_MODELS = (
+    {
+        "model": "auth.User",
+    },
+    )

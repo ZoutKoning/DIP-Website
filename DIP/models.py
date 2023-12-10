@@ -23,7 +23,8 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    # Commenting out line because of FK no null error
+    #user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
 
 class Wallet(models.Model):
     user = models.OneToOneField(NewUser, on_delete=models.CASCADE, related_name='wallet')

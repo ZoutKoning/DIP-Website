@@ -25,7 +25,7 @@ ROLE_CHOICES = (
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
 

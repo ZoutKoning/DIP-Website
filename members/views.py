@@ -30,6 +30,9 @@ def register_user(request):
     if request.method == "POST":
         form = RegisterUserForm(request.POST)
         if form.is_valid():
+            if request.POST:
+                temp = request.POST['role_field']
+                print(temp)
             form.save()
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']

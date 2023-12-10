@@ -1,35 +1,3 @@
-<<<<<<< HEAD
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-</head>
-<body>
-    <h1>Shopping Cart</h1>
-    <div id="cart-items"></div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const cartItems = document.getElementById('cart-items');
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p>Your cart is empty.</p>';
-            } else {
-                cart.forEach(item => {
-                    const div = document.createElement('div');
-                    div.innerHTML = `<h3>${item.title}</h3><p>${item.price}</p>`;
-                    cartItems.appendChild(div);
-                });
-            }
-        });
-    </script>
-</body>
-</html>
-
-=======
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,18 +66,24 @@
 </head>
 <body>
     <h1>Your Shopping Cart</h1>
-    <a href="{%url 'catalog' %}">Back to the Catalog</a>
+    <a href="catalog.html">Back to the Catalog</a>
     <div id="cart-container">
         <!-- Cart items will be loaded here -->
     </div>
     <div class="total-price">
         Total Points: <span id="total-price">0</span>
     </div>
+    <button onclick="purchaseItems()">Purchase with Points</button>
+    <div>
+        Your Points: <span id="user-points"></span>
+    </div>
 
     <script>
+
         function loadCartItems() {
             const cart = JSON.parse(localStorage.getItem('cart')) || {};
             const container = document.getElementById('cart-container');
+            container.innerHTML = ''; // Clear previous items
             let totalPrice = 0;
 
             for (const [id, item] of Object.entries(cart)) {
@@ -140,11 +114,39 @@
             let cart = JSON.parse(localStorage.getItem('cart')) || {};
             delete cart[productId];
             localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload(); // Reload the page to update the cart display
+            loadCartItems();
+            updateUserPointsUI();
         }
 
-        document.addEventListener('DOMContentLoaded', loadCartItems);
+        //"buys" the items when the button is clicked to purchase
+        function purchaseItems() {
+            const totalPrice = parseFloat(document.getElementById('total-price').innerText);
+            let userPoints = parseFloat(localStorage.getItem('userPoints'));
+
+            if (totalPrice > userPoints) {
+                alert('Not enough points to complete the purchase.');
+                return;
+            }
+
+            userPoints -= totalPrice;
+            localStorage.setItem('userPoints', userPoints.toString());
+            localStorage.setItem('cart', '{}'); // Clear the cart
+            alert('Purchase successful!');
+
+            updateUserPointsUI();
+            loadCartItems(); // Load an empty cart
+        }
+
+        //updates user points
+        function updateUserPointsUI() {
+            const userPoints = localStorage.getItem('userPoints');
+            document.getElementById('user-points').innerText = '{{ wallet_points }}';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartItems();
+            updateUserPointsUI();
+        });
     </script>
 </body>
 </html>
->>>>>>> 895a663bc47c551c63fb4bb1f9e485197fbfb29a

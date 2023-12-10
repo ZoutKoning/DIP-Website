@@ -78,7 +78,7 @@
 .hero{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
-    padding: 50px 0;
+    padding: 50px 25px;
 }
 .hero__container{
     display: flex;
@@ -146,40 +146,34 @@
 }
 
 /* Sign up Section */
-.signup{
+
+.signPage{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
     padding: 50px 0;
 }
-.signup__container_left{
-    display: flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:flex-start;
+
+.signPage__container{
+   display: flex;
+   flex-direction: column;
+    justify-content: center;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     height: 90%;
-    text-align: left;
+    text-align: center;
     padding: 30px;
+    color: #fff;
 }
 
-/* sign up heading text setting */
-.signup__heading{
-    font-size: 30px;
-    margin-bottom: 15px;
-    color:#fff;
-}
-
-.signup__heading2{
-    font-size: 25px;
-    margin-bottom: 15px;
-    margin-top: 10px;
-    color:#fff;
-
-}
-
-.signup__description{
+.signPage__heading{
     font-size: 50px;
+    margin-bottom: 24px;
+    color: #fff;
+}
+
+.signPage__description{
+    font-size: 25px;
     color: #fff;
 }
 
@@ -246,6 +240,7 @@
     font-size: 25px;
     color:#fff;
 }
+
 
 /* Application section */
 .apply{
@@ -321,3 +316,12 @@
     align-items: flex-start;
     text-align: left;
   }
+
+/* Footer */
+.footer{
+    background: #000000;
+    background: linear-gradient(to right, #161616, #000000);
+    font-size: 25px;
+    font-color:#fff;
+    text-align: center
+}

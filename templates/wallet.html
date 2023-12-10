@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +20,7 @@
             </div>
             <ul class="navbar__menu">
                 <li class="navbar__item">
-                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
+                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
                 </li>
                 <li class="navbar__item">
                     <a href="{% url 'about' %}" class="navbar__links" id="about-page">About Page</a>
@@ -29,9 +28,7 @@
                  <li class="navbar__item">
                     <a href="#wallet" class="navbar__links" id="wallet-page">My Wallet</a> 
                  </li>
-                    <li class="navbar__item">
-                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
-                     </li>
+                 
             </ul>
 
         </div>
@@ -41,37 +38,8 @@
     <div class="work" id="wallet">
         <div class="work__container">
             <h1 class="work__heading">Wallet</h1>
-            <p class = "work__description"><br>
-                You have: 0 points. <br>
-                <br>
-            </p>
-            <h2 class="work__heading">Point History</h2>
-            <canvas id="myChart" style="background-color:white; width:100%;max-width:800px">
-            </canvas>"
-            <script>
-                xValues = ["January","February","March","April","May","June","July","August","September","October",
-                "November","December"];
-                yValues = [1,2,3,4,5,6,7,30,60,15,45];
-                new Chart("myChart", {
-                    type: "line",
-                    data: {
-                    labels: xValues,
-                    datasets: [{
-                        fill: false,
-                        lineTension: 0,
-                        backgroundColor: "black",
-                        borderColor: "red",
-                        data: yValues
-                    }]
-                },
-            options: {
-                legend: {display: false},
-                scales: {
-                    yAxes: [{ticks: {min: 0, max:100}}],
-                    }
-                }
-            });
-            </script>
+                <p><strong>{{ request.user.username }}'s Wallet</strong></p>
+                <p>You have <strong>{{ wallet.points }}</strong> points.</p>
         </div>
     </div>
 

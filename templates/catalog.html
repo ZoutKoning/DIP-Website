@@ -59,30 +59,8 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar__container">
-            <a href="#home" id="navbar__logo">D.I.P</a>
-            <div class="navbar__toggle" id="mobile-menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-            <ul class="navbar__menu">
-                <li class="navbar__item">
-                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
-                </li>
-                <li class="navbar__item">
-                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-                 </li>
-                 <li class="navbar__item">
-                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
-                 </li>
-
-            </ul>
-        </div>
-    </nav>    
     <h1>Product Catalog</h1>
-    <a href="{%url 'cart' %}">Go to Cart</a> <!-- Link to cart page -->
+    <a href="cart.html">Go to Cart</a> <!-- Link to cart page -->
     <div id="product-container">
         <!-- Products will be loaded here -->
     </div>
@@ -102,7 +80,7 @@
                 products = data.results.map(product => {
                     return {
                         ...product,
-                        price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")) // Convert price to a number
+                        price: Math.round(parseFloat(product.price.replace(/[^0-9.-]+/g, ""))) // Convert price to a number
                     };
                 });
                 const container = document.getElementById('product-container');

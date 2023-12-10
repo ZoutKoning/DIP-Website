@@ -155,6 +155,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            localStorage.setItem('cart', JSON.stringify({}));
             fetchProducts(); // Fetch 'truckerclothes' by default on load
         });
     </script>

@@ -59,63 +59,105 @@
     </style>
 </head>
 <body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
+                 </li>
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% endif %}
+
+            </ul>
+        </div>
+    </nav>
     <h1>Product Catalog</h1>
+    <div>
+        <input type="text" id="search-input" placeholder="Search products...">
+        <button onclick="searchProducts()">Search</button>
+    </div>
     <a href="{%url 'cart' %}">Go to Cart</a> <!-- Link to cart page -->
     <div id="product-container">
         <!-- Products will be loaded here -->
     </div>
 
     <script>
-        localStorage.removeItem('cart');
-        function fetchProducts() {
-            const url = "https://ebay-search-result.p.rapidapi.com/search/truckerclothes";
+        let products = [];
+
+        function fetchProducts(searchQuery = 'truckerclothes') {  // Default search term
+            const url = `https://ebay-search-result.p.rapidapi.com/search/${encodeURIComponent(searchQuery)}`;
             const headers = {
                 "X-RapidAPI-Key": "5312141f13mshf56b15461559508p1b3ee1jsna43bf4b24cc7", // Replace with your API key
                 "X-RapidAPI-Host": "ebay-search-result.p.rapidapi.com"
             };
 
-        fetch(url, { headers: headers })
-            .then(response => response.json())
-            .then(data => {
-                products = data.results.map(product => {
-                    return {
-                        ...product,
-                        price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")) // Convert price to a number
-                    };
+            fetch(url, { headers: headers })
+                .then(response => response.json())
+                .then(data => {
+                    products = data.results.map(product => {
+                        return {
+                            ...product,
+                            price: Math.round(parseFloat(product.price.replace(/[^0-9.-]+/g, ""))) // Convert price to a number
+                        };
+                    });
+                    const container = document.getElementById('product-container');
+                    container.innerHTML = ''; // Clear existing products
+                    products.forEach(product => {
+                        const productDiv = document.createElement('div');
+                        productDiv.className = 'product';
+                        productDiv.innerHTML = `
+                            <h2>${product.title}</h2>
+                            <img src="${product.image}" alt="Product Image">
+                            <p>Points: ${product.price}</p>
+                            <button onclick="addToCart('${product.id}')">Add to Cart</button>
+                        `;
+                        container.appendChild(productDiv);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                 });
-                const container = document.getElementById('product-container');
-                products.forEach(product => {
-                    const productDiv = document.createElement('div');
-                    productDiv.className = 'product';
-                    productDiv.innerHTML = `
-                        <h2>${product.title}</h2>
-                        <img src="${product.image}" alt="Product Image">
-                        <p>Points: ${product.price}</p>
-                        <button onclick="addToCart('${product.id}')">Add to Cart</button>
-                    `;
-                    container.appendChild(productDiv);
-                });
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
-    function addToCart(productId) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || {};
-        const product = products.find(p => p.id === productId);
-        if (product) {
-            if (!cart[productId]) {
-                cart[productId] = {...product, quantity: 1};
-            } else {
-                cart[productId].quantity += 1;
-            }
-            localStorage.setItem('cart', JSON.stringify(cart));
-            alert('Added to cart!');
         }
-    }
 
-    document.addEventListener('DOMContentLoaded', fetchProducts);
+        function searchProducts() {
+            const searchQuery = document.getElementById('search-input').value || 'truckerclothes'; // Default to 'truckerclothes' if empty
+            fetchProducts(searchQuery);
+        }
+
+        function addToCart(productId) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || {};
+            const product = products.find(p => p.id === productId);
+            if (product) {
+                if (!cart[productId]) {
+                    cart[productId] = {...product, quantity: 1};
+                } else {
+                    cart[productId].quantity += 1;
+                }
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert('Added to cart!');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchProducts(); // Fetch 'truckerclothes' by default on load
+        });
     </script>
 </body>
 </html>
+

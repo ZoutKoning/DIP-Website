@@ -46,7 +46,8 @@
             <div class="signPage__heading">Sign Up</div>
             <form action="{%url 'register_user' %}" method=POST>
                 {% csrf_token %}
-                {{ form.as_p }}
+                {{ form_reg.as_p }}
+                {{ form_prof.as_p }}
                 <br><br/>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

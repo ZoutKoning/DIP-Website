@@ -3,6 +3,7 @@ from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
 
+
 # Create your models here
 
 
@@ -22,11 +23,15 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
-    #user_LName = NewUser.lastName
-    #user_Password = NewUser.password
-    #user_LoginName = NewUser.username
-    #user_Role = NewUser.role
+    # Commenting out line because of FK no null error
+    #user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+
+class Wallet(models.Model):
+    user = models.OneToOneField(NewUser, on_delete=models.CASCADE, related_name='wallet')
+    points = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.user.username}'s Wallet"
 
 
 class mysprint(models.Model):

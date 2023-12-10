@@ -1,16 +1,31 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import Role
+from .models import UserProfile
+
+DRIVER = "driver"
+SPONSOR = "sponsor"
+ADMIN = "admin"
+ROLE_CHOICES = (
+    (DRIVER, "driver"),
+    (SPONSOR, "sponsor"),
+    (ADMIN, "admin"),
+)
 
 
 class RegisterUserForm(UserCreationForm):
     email = forms.EmailField()
-    firstName = forms.CharField(max_length=100)
-    lastName = forms.CharField(max_length=100)
-    Role = forms.CharField(max_length=1, help_text='D(driver) S(sponsor) A(admin)')
-    # userRole = forms.ModelChoiceField(queryset=Role.objects.all())
+    first_name = forms.CharField(max_length=100)
+    last_name = forms.CharField(max_length=100)
 
     class Meta:
         model = User
-        fields = ('firstName', 'lastName', 'email', 'username', 'password1', 'password2', 'Role')
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
+
+
+class ProfileForm(forms.ModelForm):
+    role_field = forms.ChoiceField(choices=ROLE_CHOICES)
+
+    class Meta:
+        model = UserProfile
+        fields = ('role_field',)

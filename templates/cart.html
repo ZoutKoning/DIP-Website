@@ -73,11 +73,17 @@
     <div class="total-price">
         Total Points: <span id="total-price">0</span>
     </div>
+    <button onclick="purchaseItems()">Purchase with Points</button>
+    <div>
+        Your Points: <span id="user-points"></span>
+    </div>
 
     <script>
+
         function loadCartItems() {
             const cart = JSON.parse(localStorage.getItem('cart')) || {};
             const container = document.getElementById('cart-container');
+            container.innerHTML = ''; // Clear previous items
             let totalPrice = 0;
 
             for (const [id, item] of Object.entries(cart)) {
@@ -108,10 +114,39 @@
             let cart = JSON.parse(localStorage.getItem('cart')) || {};
             delete cart[productId];
             localStorage.setItem('cart', JSON.stringify(cart));
-            location.reload(); // Reload the page to update the cart display
+            loadCartItems();
+            updateUserPointsUI();
         }
 
-        document.addEventListener('DOMContentLoaded', loadCartItems);
+        //"buys" the items when the button is clicked to purchase
+        function purchaseItems() {
+            const totalPrice = parseFloat(document.getElementById('total-price').innerText);
+            let userPoints = parseFloat(localStorage.getItem('userPoints'));
+
+            if (totalPrice > userPoints) {
+                alert('Not enough points to complete the purchase.');
+                return;
+            }
+
+            userPoints -= totalPrice;
+            localStorage.setItem('userPoints', userPoints.toString());
+            localStorage.setItem('cart', '{}'); // Clear the cart
+            alert('Purchase successful!');
+
+            updateUserPointsUI();
+            loadCartItems(); // Load an empty cart
+        }
+
+        //updates user points
+        function updateUserPointsUI() {
+            const userPoints = localStorage.getItem('userPoints');
+            document.getElementById('user-points').innerText = '{{ wallet_points }}';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadCartItems();
+            updateUserPointsUI();
+        });
     </script>
 </body>
 </html>

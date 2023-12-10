@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
-
+from members.models import UserProfile
 
 # Create your models here
 
@@ -39,6 +39,11 @@ class mysprint(models.Model):
     versNum = models.CharField(max_length=250)
     releaseDate = models.CharField(max_length=250)
     prodDesc = models.CharField(max_length=250)
+
+
+# Model start Below James
+class SponsorOrgs(models.Model):
+    orgs = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 
 auditlog.register(mysprint)

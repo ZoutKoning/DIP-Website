@@ -5,43 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DriverIncentiveProgram</title>
-        <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-
 <!--section Navbar-->
-<nav class="navbar">
-    <div class="navbar__container">
-        <a href="#home" id="navbar__logo">DIP</a>
-        <div class="navbar__toggle" id="mobile-menu">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">DIP</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{% url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="#wallet" class="navbar__links" id="wallet-page">My Wallet</a>
+                 </li>
+
+            </ul>
+
         </div>
-        <ul class="navbar__menu">
-            <li class="navbar__item">
-                <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
-            </li>
-            <li class="navbar__item">
-                <a href="{% url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-             </li>
-             <li class="navbar__item">
-                <a href="#wallet" class="navbar__links" id="wallet-page">My Wallet</a>
-             </li>
+    </nav>
 
-        </ul>
-
+    <div class="wallet" id="walletPage">
+        <div class="wallet__container">
+            <h1 class="wallet__heading">
+                Wallet
+            </h1>
+        </div>
     </div>
-</nav>
-
-<!--section Wallet-->
-<div class="work" id="wallet">
-    <div class="work__container">
-        <h1 class="work__heading">Wallet</h1>
-            <p>{{ request.user.username }}'s Wallet</p>
-            <p>You have {{ wallet.points }} points.</p>
-    </div>
-</div>
-
+    {{ request.user.username }}'s Wallet
+    You have {{ wallet.points }} points.
 </body>
 </html>

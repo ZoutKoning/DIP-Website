@@ -209,12 +209,13 @@
 }
 
 /*Wallet section*/
-.work{
+
+.wallet{
     background: #000000;
     background: linear-gradient(to right, #161616, #000000);
     padding: 100px 0;
 }
-.work__container{
+.wallet__container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -227,21 +228,22 @@
     color: #fff;
 }
 
-.work__heading{
+.wallet__heading{
     font-size: 50px;
     margin-bottom: 24px;
     color: #fff;
 }
-.work__heading2{
+
+.wallet__heading2{
     font-size: 25px;
     margin-bottom: 15px;
     color:#fff;
 }
-.work__description{
+
+.wallet__description{
     font-size: 25px;
     color:#fff;
 }
-
 
 /* Application section */
 .apply{

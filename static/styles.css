@@ -207,15 +207,15 @@
     font-size: 25px;
     color:#fff;
 }
+/* Wallet up Section */
 
-/*Wallet section*/
-
-.wallet{
+.walletPage{
     background: #000000;
-    background: linear-gradient(to right, #161616, #000000);
-    padding: 100px 0;
+    background: linear-gradient(to right, #161616, #000);
+    padding: 50px 0;
 }
-.wallet__container{
+
+.walletPage__container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -228,16 +228,17 @@
     color: #fff;
 }
 
-.wallet__heading{
+.walletPage__heading{
     font-size: 50px;
     margin-bottom: 24px;
     color: #fff;
 }
 
-.wallet__description{
+.walletPage__description{
     font-size: 25px;
-    color:#fff;
+    color: #fff;
 }
+
 
 /* Application section */
 .apply{

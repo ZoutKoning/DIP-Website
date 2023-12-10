@@ -1,46 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DriverIncentiveProgram</title>
-    <link rel="stylesheet" href="/static/styles.css">
-</head>
-<body>
-<!--section Navbar-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DriverIncentiveProgram</title>
+        <link rel="stylesheet" href="/static/styles.css">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+
+    <!--section Navbar-->
     <nav class="navbar">
         <div class="navbar__container">
-            <a href="#home" id="navbar__logo">DIP</a>
+            <a href="#home" id="navbar__logo">D.I.P</a>
             <div class="navbar__toggle" id="mobile-menu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
             <ul class="navbar__menu">
+                {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                     </li>
+                {% endif %}
                 <li class="navbar__item">
-                    <a href="{% url 'index' %}" class="navbar__links" id="home-page">Home</a>
+                    <a href="#about" class="navbar__links" id="about-page">About Page</a>
                 </li>
-                <li class="navbar__item">
-                    <a href="{% url 'about' %}" class="navbar__links" id="about-page">About Page</a>
-                 </li>
-                 <li class="navbar__item">
-                    <a href="#wallet" class="navbar__links" id="wallet-page">My Wallet</a>
-                 </li>
-
+                {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'wallet' %}" class="navbar__links" id="wallet-page">Wallet</a>
+                     </li>
+                {% endif %}
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% else %}
+                     <li class="navbar__item">
+                        <a href="{%url 'login_user' %}" class="navbar__links" id="signin-page">Log-In</a>
+                     </li>
+                    <li class="navbar__item">
+                        <a href="{%url 'register_user' %}" class="navbar__links" id="SignUp-page">Sign-Up</a>
+                     </li>
+                {% endif %}
             </ul>
 
         </div>
     </nav>
 
-    <div class="wallet" id="walletPage">
-        <div class="wallet__container">
-            <h1 class="wallet__heading">
-                Wallet
-            </h1>
+     <!-- section About Page-->
+     <div class="aboutme" id = "wallet">
+        <div class="aboutme__container">
+            <h1 class="aboutme__heading">Wallet</h1>
+            <br/>
+             <div class="aboutme__description">
+                 <div class="aboutme__header">
+                     {{request.user.username}}
+                     <br><br/>
+                     Wallet Info:
+                 </div>
+                 <div class="aboutme__description">
+                     <br>
+                     <p class="aboutme__description">
+                         Points: {{wallet.points}}
+                     </p>
+                 </div>
+             </div>
         </div>
-    </div>
-    {{ request.user.username }}'s Wallet
-    You have {{ wallet.points }} points.
+     </div>
 </body>
 </html>

@@ -27,6 +27,7 @@ class User(models.Model):
 
 #Wallet model
 class Wallet(models.Model):
+    DoesNotExist = None
     user = models.OneToOneField(NewUser, on_delete=models.CASCADE, related_name='wallet')
     points = models.IntegerField(default=0)
 

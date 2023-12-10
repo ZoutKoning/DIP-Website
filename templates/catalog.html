@@ -80,7 +80,7 @@
                 products = data.results.map(product => {
                     return {
                         ...product,
-                        price: parseFloat(product.price.replace(/[^0-9.-]+/g, "")) // Convert price to a number
+                        price: Math.round(parseFloat(product.price.replace(/[^0-9.-]+/g, ""))) // Convert price to a number
                     };
                 });
                 const container = document.getElementById('product-container');

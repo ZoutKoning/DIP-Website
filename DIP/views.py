@@ -7,6 +7,7 @@ from .models import NewUser
 from .forms import NewUserForm
 from . models import mysprint
 from . models import Wallet
+from django.contrib.auth.decorators import login_required
 
 
 # Home page
@@ -41,7 +42,18 @@ def catalog(request):
 
 # Page that loads the cart
 def cart(request):
-    return render(request, "cart.html")
+    if request.user.is_authenticated:
+        try:
+            wallet_points = request.user.wallet.points
+        except Wallet.DoesNotExist:
+            wallet_points = 1000  # default points if wallet does not exist
+    else:
+        wallet_points = 1000  # default points for non-authenticated users
+
+    context = {
+        'wallet_points': round(wallet_points)  # rounding to the nearest whole number
+    }
+    return render(request, 'cart.html', context)
 
 
 # Sign In/Up page
@@ -67,12 +79,7 @@ def signin(request):
     return render(request, 'signin.html')
 
 
+@login_required
 def wallet(request, user_id):
-    user = get_object_or_404(NewUser, id=user_id)
-    wallet = get_object_or_404(Wallet, user=user)
-
-    context = {
-        'user': user,
-        'wallet': wallet
-    }
-    return render(request, 'wallet.html', context)
+    wallet = request.user.wallet
+    return render(request, 'view_wallet.html', {'wallet': wallet})

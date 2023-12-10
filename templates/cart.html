@@ -79,12 +79,6 @@
     </div>
 
     <script>
-        //initialize the user points
-        function initializeUserPoints() {
-            if (localStorage.getItem('userPoints') === null) {
-                localStorage.setItem('userPoints', '1000'); // starting with 1000 points
-            }
-        }
 
         function loadCartItems() {
             const cart = JSON.parse(localStorage.getItem('cart')) || {};
@@ -146,11 +140,10 @@
         //updates user points
         function updateUserPointsUI() {
             const userPoints = localStorage.getItem('userPoints');
-            document.getElementById('user-points').innerText = userPoints;
+            document.getElementById('user-points').innerText = '{{ wallet_points }}';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            initializeUserPoints();
             loadCartItems();
             updateUserPointsUI();
         });

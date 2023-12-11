@@ -8,14 +8,57 @@ from django.http import HttpResponseRedirect
 # import requests
 # from .forms import MyForm
 from .models import mysprint
-
-# imports for forms
-from .models import NewUser
-from .forms import NewUserForm
-from .models import User
-# MEMEBERS PULL
+from django.http import FileResponse
+import io
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+from reportlab.lib.pagesizes import letter
 from members.models import UserProfile
-from members.forms import SponsorApplicationForm
+
+
+
+# Generate audit log pdf
+
+
+
+def logs_report(request):
+    # Create Bytestream buffer
+    buf = io.BytesIO()
+    # Create a canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    # Create Text Object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 8)
+
+    # Add some lines of text
+    # Designate the model
+    logs = LogEntry.objects.all()
+    # Create blank list
+    lines = []
+    # Write the log entries to lines
+    for log_entry in logs:
+        original_object = log_entry.object_repr
+        changed_object = log_entry.changes
+        lines.append(original_object)
+        lines.append(changed_object)
+        lines.append(" ")
+        lines.append("===================")
+
+    # Loop
+    for line in lines:
+        textob.textLine(line)
+
+    # Finish up
+    c.drawText(textob)
+
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    # return file
+    return FileResponse(buf, as_attachment=True, filename='Audit-Logs.pdf')
+
 
 
 # Home page
@@ -30,6 +73,7 @@ def about(request):
     return render(request, "about.html", {'sprintInfo': sprintInfo})
 
 
+
 # Wallet page
 def points(request):
     return render(request, "wallet.html")
@@ -37,6 +81,7 @@ def points(request):
 
 # Sponsor application(PDF) page
 def sponsors(request):
+    #sponsorsinfo = userprofile.objects.all()
     return render(request, "sponsors.html")
 
 

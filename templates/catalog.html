@@ -153,8 +153,13 @@
                 alert('Added to cart!');
             }
         }
+        
+        function emptyCart() {
+            localStorage.setItem('cart', JSON.stringify({})); // Set cart to an empty object
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
+            emptyCart(); // empties cart on load
             fetchProducts(); // Fetch 'truckerclothes' by default on load
         });
     </script>

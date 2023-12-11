@@ -1,52 +1,21 @@
-
-from auditlog.models import LogEntry
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+# imports for forms
+# from decouple import config
+# from . import decode_jwt
+# import base64
+# import requests
+# from .forms import MyForm
 from .models import mysprint
-from django.http import FileResponse
-import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch
-from reportlab.lib.pagesizes import letter
 
-# Generate audit log pdf
-
-def logs_report(request):
-    # Create Bytestream buffer
-    buf = io.BytesIO()
-    # Create a canvas
-    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
-    # Create Text Object
-    textob = c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 8)
-
-    # Add some lines of text
-    # Designate the model
-    logs = LogEntry.objects.all()
-    # Create blank list
-    lines = []
-    # Write the log entries to lines
-    for log_entry in logs:
-        original_object = log_entry.object_repr
-        changed_object = log_entry.changes
-        lines.append(original_object)
-        lines.append(changed_object)
-        lines.append(" ")
-        lines.append("===================")
-
-    # Loop
-    for line in lines:
-        textob.textLine(line)
-
-    # Finish up
-    c.drawText(textob)
-
-    c.showPage()
-    c.save()
-    buf.seek(0)
-
-    # return file
-    return FileResponse(buf, as_attachment=True, filename='Audit-Logs.pdf')
+# imports for forms
+from .models import NewUser
+from .forms import NewUserForm
+from .models import User
+# MEMEBERS PULL
+from members.models import UserProfile
+from members.forms import SponsorApplicationForm
 
 
 # Home page
@@ -62,17 +31,13 @@ def about(request):
 
 
 # Wallet page
-def wallet(request):
+def points(request):
     return render(request, "wallet.html")
 
 
 # Sponsor application(PDF) page
 def sponsors(request):
     return render(request, "sponsors.html")
-
-
-def drivers(request):
-    return render(request, "drivers.html")
 
 
 # Dashboard page
@@ -90,10 +55,19 @@ def cart(request):
     return render(request, "cart.html")
 
 
-# Sign In/Up page
-def login(request):
-    return render(request, 'login.html')
+def drivers(request):
+    if request.method == "POST":
+        form = SponsorApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Application Submitted")
+    else:
+        form = SponsorApplicationForm()
+    return render(request, "drivers.html", {'form': form})
 
+
+'''def login(request):
+    return render(request, 'login.html')'''
 
 '''def signin(request):
     submitted = False

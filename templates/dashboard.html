@@ -31,6 +31,9 @@
                  <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
+                <li class="navbar__item">
+                    <a href="{% url 'view_logs' %}" class="navbar__links" id="auditlogs">Audit-Log</a>
+                </li>
                  {% if user.is_authenticated %}
                     <li class="navbar__item">
                         <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>

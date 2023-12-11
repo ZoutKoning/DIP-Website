@@ -13,7 +13,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
-from members.models import Profile
+from members.models import Account
 
 
 
@@ -118,7 +118,7 @@ def points(request):
 
 # Sponsor application(PDF) page
 def sponsors(request):
-    #sponsorsinfo = userprofile.objects.all()
+    #sponsorsinfo = Account.objects.all()
     return render(request, "sponsors.html")
 
 

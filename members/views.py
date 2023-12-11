@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import RegisterUserForm, ProfileForm, SponsorApplicationForm
-from .models import Profile
+from .forms import RegisterUserForm, AccountForm, SponsorApplicationForm
+from .models import Account
 
 
 # Create your views here.
@@ -30,15 +30,15 @@ def logout_user(request):
 def register_user(request):
     if request.method == "POST":
         form_reg = RegisterUserForm(request.POST)
-        form_prof = ProfileForm(request.POST)
+        form_prof = AccountForm(request.POST)
         if form_reg.is_valid() and form_prof.is_valid():
             if request.POST:
                 temp = request.POST['role_field']
                 print(temp)
             new_user = form_reg.save()
-            profile = form_prof.save(commit=False)
-            if profile.user_id is None:
-                profile.user_id = new_user.id
+            account = form_prof.save(commit=False)
+            if Account.user_id is None:
+                Account.user_id = new_user.id
             username = form_reg.cleaned_data['username']
             password = form_reg.cleaned_data['password1']
             user = authenticate(username=username, password=password)
@@ -47,6 +47,6 @@ def register_user(request):
             return redirect('dashboard')
     else:
         form_reg = RegisterUserForm()
-        form_prof = ProfileForm()
+        form_prof = AccountForm()
     return render(request, 'authenticate/newUser.html',
                   {'form_reg': form_reg, 'form_prof': form_prof})

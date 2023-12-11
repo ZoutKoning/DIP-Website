@@ -38,28 +38,24 @@ SPONSOR_CHOICES = (
 )
 
 
-class Profile(models.Model):
+class Account(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
-    mySponsor = models.CharField(max_length=7, choices=ROLE_CHOICES, default=NONE)
-    approved = models.BooleanField('Approved', default=False)
 
 
 @receiver(post_save, sender=User)
-def create_profile(sender, instance, created, **kwargs):
+def create_user_Account(sender, instance, created, **kwargs):
     print(created)
     if created:
-        Profile.objects.create(user=instance)
+        Account.objects.create(user=instance)
         print('created user profile')
     else:
         try:
-            profile = Profile.objects.get(user=instance)
-            profile.save()
+            account = Account.objects.get(user=instance)
+            account.save()
             print('updated')
         except:
 
-            Profile.objects.create(user=instance)
+            Account.objects.create(user=instance)
             print('Profile did not exist, created one now.')
-
-
-auditlog.register(Profile)

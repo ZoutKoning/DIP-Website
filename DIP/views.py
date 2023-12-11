@@ -1,25 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-#imports for forms
-#from decouple import config
-#from . import decode_jwt
-#import base64
-#import requests
-#from .forms import MyForm
+# imports for forms
+# from decouple import config
+# from . import decode_jwt
+# import base64
+# import requests
+# from .forms import MyForm
 from .models import mysprint
 
 # imports for forms
 from .models import NewUser
 from .forms import NewUserForm
 from .models import User
-#from .forms import ReturnUser
+# MEMEBERS PULL
+from members.models import UserProfile
+from members.forms import SponsorApplicationForm
 
 
 # Home page
 def index(request):
-        return render(request, 'index.html')
-
+    return render(request, 'index.html')
 
 
 # About page
@@ -30,17 +31,13 @@ def about(request):
 
 
 # Wallet page
-def wallet(request):
+def points(request):
     return render(request, "wallet.html")
 
 
 # Sponsor application(PDF) page
 def sponsors(request):
     return render(request, "sponsors.html")
-
-
-def drivers(request):
-    return render(request, "drivers.html")
 
 
 # Dashboard page
@@ -58,10 +55,19 @@ def cart(request):
     return render(request, "cart.html")
 
 
-# Sign In/Up page
-def login(request):
-    return render(request, 'login.html')
+def drivers(request):
+    if request.method == "POST":
+        form = SponsorApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Application Submitted")
+    else:
+        form = SponsorApplicationForm()
+    return render(request, "drivers.html", {'form': form})
 
+
+'''def login(request):
+    return render(request, 'login.html')'''
 
 '''def signin(request):
     submitted = False
@@ -75,7 +81,6 @@ def login(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'signup.html', {'form': form, 'submitted': submitted})'''
-
 
 '''def signup(request):
     submitted = False
@@ -92,5 +97,3 @@ def login(request):
         if 'submitted' in request.GET:
             submitted = True
     return render(request, 'signin.html', {'form': form, 'submitted': submitted})'''
-
-

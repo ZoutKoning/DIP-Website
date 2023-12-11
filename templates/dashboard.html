@@ -45,10 +45,9 @@
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
-            <h1 class="dashboard__heading">Username</h1>
+            <h1 class="dashboard__heading">{{request.user.username}}</h1>
+            <h2 class="dashboard__heading">{{request.user.profile.role}}</h2>
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
-            <h2 class="dashboard__heading2">Role</h2>
-
             <!--DRIVER VIEW ONLY-->
             <!--Sponsor Card list group-->
             <h3 class="dashboard__heading2">My Sponsors</h3>

@@ -14,6 +14,7 @@ class Role(models.Model):
         return self.userRole
 
 
+# ROLES
 DRIVER = "driver"
 SPONSOR = "sponsor"
 ADMIN = "admin"
@@ -23,11 +24,25 @@ ROLE_CHOICES = (
     (ADMIN, "admin"),
 )
 
+# SPONSORS
+AMAZON = "Amazon"
+YOUTUBE = "YouTube"
+MICROSOFT = "Microsoft"
+NONE = "NONE"
+SPONSOR_CHOICES = (
+    (AMAZON, "Amazon"),
+    (YOUTUBE, "YouTube"),
+    (MICROSOFT, "Microsoft"),
+    (NONE, "NONE"),
+)
+
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
+    # mySponsors = models.CharField(max_length=9, choices=SPONSOR_CHOICES, default=NONE)
+    approved = models.BooleanField('Approved', default=False)
 
 
 @receiver(post_save, sender=User)
@@ -47,12 +62,4 @@ def create_user_profile(sender, instance, created, **kwargs):
             print('Profile did not exist, created one now.')
 
 
-''' ALMOST GOT IT PERFECT
-class User(AbstractUser):
-    username = models.CharField(unique=True, max_length=150)
-    email = models.EmailField(max_length=255, unique=True)
-    name = models.CharField(max_length=255)
-    is_active = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
-    role = models.CharField(max_length=7)
-    # role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)'''
+

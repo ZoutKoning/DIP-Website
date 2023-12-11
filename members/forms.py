@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import UserProfile
 
+# ROLE CHOICES
 DRIVER = "driver"
 SPONSOR = "sponsor"
 ADMIN = "admin"
@@ -10,6 +11,18 @@ ROLE_CHOICES = (
     (DRIVER, "driver"),
     (SPONSOR, "sponsor"),
     (ADMIN, "admin"),
+)
+
+# SPONSOR CHOICES
+AMAZON = "Amazon"
+YOUTUBE = "YouTube"
+MICROSOFT = "Microsoft"
+NONE = "NONE"
+SPONSOR_CHOICES = (
+    (AMAZON, "Amazon"),
+    (YOUTUBE, "YouTube"),
+    (MICROSOFT, "Microsoft"),
+    (NONE, "NONE"),
 )
 
 
@@ -29,3 +42,11 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('role_field',)
+
+
+class SponsorApplicationForm(forms.ModelForm):
+    sponsor_field = forms.ChoiceField(choices=SPONSOR_CHOICES)
+
+    class Meta:
+        model = UserProfile
+        fields = ('sponsor_field',)

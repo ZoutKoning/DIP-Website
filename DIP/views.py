@@ -1,6 +1,12 @@
-
-from auditlog.models import LogEntry
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+# imports for forms
+# from decouple import config
+# from . import decode_jwt
+# import base64
+# import requests
+# from .forms import MyForm
 from .models import mysprint
 from django.http import FileResponse
 import io
@@ -54,6 +60,7 @@ def logs_report(request):
     return FileResponse(buf, as_attachment=True, filename='Audit-Logs.pdf')
 
 
+
 # Home page
 def index(request):
     return render(request, 'index.html')
@@ -68,7 +75,7 @@ def about(request):
 
 
 # Wallet page
-def wallet(request):
+def points(request):
     return render(request, "wallet.html")
 
 
@@ -76,10 +83,6 @@ def wallet(request):
 def sponsors(request):
     #sponsorsinfo = userprofile.objects.all()
     return render(request, "sponsors.html")
-
-
-def drivers(request):
-    return render(request, "drivers.html")
 
 
 # Dashboard page
@@ -97,10 +100,19 @@ def cart(request):
     return render(request, "cart.html")
 
 
-# Sign In/Up page
-def login(request):
-    return render(request, 'login.html')
+def drivers(request):
+    if request.method == "POST":
+        form = SponsorApplicationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Application Submitted")
+    else:
+        form = SponsorApplicationForm()
+    return render(request, "drivers.html", {'form': form})
 
+
+'''def login(request):
+    return render(request, 'login.html')'''
 
 '''def signin(request):
     submitted = False

@@ -4,6 +4,7 @@ import datetime
 from auditlog.registry import auditlog
 # from members.models import UserProfile
 
+
 # Create your models here
 
 
@@ -27,12 +28,9 @@ class User(models.Model):
     # user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
 
 
-class Wallet(models.Model):
-    user = models.OneToOneField(NewUser, on_delete=models.CASCADE, related_name='wallet')
-    points = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.user.username}'s Wallet"
+class points(models.Model):
+    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE,)
+    myPoints = models.IntegerField(default=100)
 
 
 class mysprint(models.Model):
@@ -40,8 +38,6 @@ class mysprint(models.Model):
     versNum = models.CharField(max_length=250)
     releaseDate = models.CharField(max_length=250)
     prodDesc = models.CharField(max_length=250)
-
-
 
 
 auditlog.register(mysprint)

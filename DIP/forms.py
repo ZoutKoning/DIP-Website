@@ -2,6 +2,10 @@ from django import forms
 from django.forms import ModelForm
 from .models import NewUser
 from .models import User
+# from members.models import UserProfile
+
+
+
 
 
 # New User Form

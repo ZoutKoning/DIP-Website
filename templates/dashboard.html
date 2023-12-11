@@ -26,7 +26,7 @@
                     <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
                  </li>
                  <li class="navbar__item">
-                    <a href="{%url 'wallet' %}" class="navbar__links" id="project-page">Wallet</a>
+                    <a href="{%url 'points' %}" class="navbar__links" id="project-page">Wallet</a>
                  </li>
                  <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
@@ -49,6 +49,7 @@
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
+
             <h1 class="dashboard__heading">Username: {{request.user.username}}</h1>
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
             <h2 class="dashboard__heading2">Role: {{request.UserProfile.role}}</h2>

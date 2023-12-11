@@ -14,6 +14,7 @@ class Role(models.Model):
         return self.userRole
 
 
+# ROLES
 DRIVER = "driver"
 SPONSOR = "sponsor"
 ADMIN = "admin"
@@ -23,9 +24,21 @@ ROLE_CHOICES = (
     (ADMIN, "admin"),
 )
 
+# SPONSORS
+AMAZON = "Amazon"
+YOUTUBE = "YouTube"
+MICROSOFT = "Microsoft"
+NONE = "NONE"
+SPONSOR_CHOICES = (
+    (AMAZON, "Amazon"),
+    (YOUTUBE, "YouTube"),
+    (MICROSOFT, "Microsoft"),
+    (NONE, "NONE"),
+)
+
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
     approved = models.BooleanField('Approved', default=False)
@@ -59,3 +72,4 @@ class User(AbstractUser):
     # role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)'''
 
 auditlog.register(UserProfile)
+

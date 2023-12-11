@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
-from members.models import UserProfile
+# from members.models import UserProfile
 
 
 # Create your models here

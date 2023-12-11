@@ -30,6 +30,9 @@
                 <li class="navbar__item">
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
+                <li class="navbar__item">
+                    <a href="{% url 'view_logs' %}" class="navbar__links" id="auditlogs">Audit-Log</a>
+                </li>
                  {% if user.is_authenticated %}
                     <li class="navbar__item">
                         <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
@@ -43,38 +46,55 @@
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
-            <h1 class="dashboard__heading">{{request.user.username}}</h1>
+
+            <h1 class="dashboard__heading">Username: {{request.user.username}} </h1>
+
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
             <h2 class="dashboard__heading2"></h2>
 
             <!--DRIVER VIEW ONLY-->
             <!--Sponsor Card list group-->
-            <h3 class="dashboard__heading2">My Sponsors</h3>
+            <h3 class="dashboard__heading2">Sponsor Company</h3>
             <nav>
                 <ul class="list-group">
                     <li class="card">
+                        {% for user in UserProfile %}
+                        {% if UserProfile.approved %}
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">Applications</h5>
+                            <p class="card-text">Applicants to be Approved or Denied</p>
                             </div>
+                                <p class="card-text">
+                                 <ul>
+                                 <li> username: {{user.user}}</li>
+                                 <li> Role: {{user.role}}</li>
+                                 <li> Approved: {{user.approved}}</li>
+                                </ul>
+                                 <br/>
+                                </p>
                         </div>
+                        {% endif %}
+                        {% endfor %}
                     </li>
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">Add a Driver</h5>
+                            <p class="card-text">Add a driver to my sponsor company.</p>
                             </div>
                         </div>
                     </li>
                     <li class="card">
+                        <!-- Add if statement to only drivers that are in the specific
+                        sponsors ors -->
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">Sponsor</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">List Drivers</h5>
+                            <p class="card-text">List all drivers in my sponsor company.</p>
                             </div>
                         </div>
+                        <!-- end if statement-->
                     </li>
                 </ul>
             </nav>

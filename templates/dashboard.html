@@ -32,8 +32,9 @@
                     <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
                  </li>
                 <li class="navbar__item">
-                    <a href="{% url 'view_logs' %}" class="navbar__links" id="auditlogs">Audit-Log</a>
+                  <!--  <a href="{% url 'view_logs' %}" class="navbar__links" id="auditlogs">Audit-Log</a>-->
                 </li>
+
                  {% if user.is_authenticated %}
                     <li class="navbar__item">
                         <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
@@ -48,35 +49,35 @@
     <div class="dashboard" id="dash">
         <div class="dashboard__container_left">
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
-            <h1 class="dashboard__heading">{{request.user.username}}</h1>
-            <h2 class="dashboard__heading">{{UserProfile.objcts}}</h2>
+
+            <h1 class="dashboard__heading">Username: {{request.user.username}}</h1>
             <!--CHANGE REQUIRED: Display username of user that is signed in-->
-            <!--DRIVER VIEW ONLY-->
-            <!--Sponsor Card list group-->
-            <h3 class="dashboard__heading2">My Sponsors</h3>
+            <h2 class="dashboard__heading2">Role: {{request.UserProfile.role}}</h2>
+
             <nav>
                <ul class="list-group">
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">YouTube</h5>
-                            <p class="card-text">How your driving skills help to advance both our platform and your own.</p>
+                            <a href="{% url 'sponsors' %}" class="car-title" id="sponsor">Sponsors View</a>
+                            <p class="card-text">navigate to the sponsor view</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="card" >
+                        <div class="card__container"> 
+                            <div class="card-body">
+                            <a href="{% url 'drivers' %}" class="car-title" id="driver">Drivers View</a>
+                            <p class="card-text">navigate to the driver view.</p>
                             </div>
                         </div>
                     </li>
                     <li class="card">
                         <div class="card__container"> 
                             <div class="card-body">
-                            <h5 class="card-title">Amazon</h5>
-                            <p class="card-text">Your driving will help our analytics for future vehicles and traffic capabilites.</p>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="card">
-                        <div class="card__container"> 
-                            <div class="card-body">
-                            <h5 class="card-title">GitHub</h5>
-                            <p class="card-text">Over here we like numbers, drivers like you help us with that.</p>
+                            <!--<h5 class="card-title">Audit Logs</h5>-->
+                            <a href="{% url 'view_logs' %}" class="car-title" id="auditlogs">Audit-Log</a>
+                            <p class="card-text">download audit log pdf</p>
                             </div>
                         </div>
                     </li>

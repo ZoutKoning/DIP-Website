@@ -7,8 +7,13 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+from members.models import UserProfile
+
+
 
 # Generate audit log pdf
+
+
 
 def logs_report(request):
     # Create Bytestream buffer
@@ -61,6 +66,7 @@ def about(request):
     return render(request, "about.html", {'sprintInfo': sprintInfo})
 
 
+
 # Wallet page
 def wallet(request):
     return render(request, "wallet.html")
@@ -68,6 +74,7 @@ def wallet(request):
 
 # Sponsor application(PDF) page
 def sponsors(request):
+    #sponsorsinfo = userprofile.objects.all()
     return render(request, "sponsors.html")
 
 

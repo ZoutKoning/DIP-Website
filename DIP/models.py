@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
-from members.models import UserProfile
+# from members.models import UserProfile
 
 # Create your models here
 
@@ -24,7 +24,8 @@ class NewUser(models.Model):
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
     # Commenting out line because of FK no null error
-    #user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    # user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+
 
 class Wallet(models.Model):
     user = models.OneToOneField(NewUser, on_delete=models.CASCADE, related_name='wallet')
@@ -41,9 +42,6 @@ class mysprint(models.Model):
     prodDesc = models.CharField(max_length=250)
 
 
-# Model start Below James
-class SponsorOrgs(models.Model):
-    orgs = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
 
 auditlog.register(mysprint)

@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
+from auditlog.registry import auditlog
 
 # Create your models here.
 
@@ -28,6 +28,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
+    approved = models.BooleanField('Approved', default=False)
 
 
 @receiver(post_save, sender=User)
@@ -56,3 +57,5 @@ class User(AbstractUser):
     is_staff = models.BooleanField(default=False)
     role = models.CharField(max_length=7)
     # role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True)'''
+
+auditlog.register(UserProfile)

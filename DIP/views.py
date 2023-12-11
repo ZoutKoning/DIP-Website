@@ -13,7 +13,7 @@ import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
-from members.models import UserProfile
+from members.models import Profile
 
 
 
@@ -62,6 +62,43 @@ def logs_report(request):
 
 
 # Home page
+def logs_report(request):
+    # Create Bytestream buffer
+    buf = io.BytesIO()
+    # Create a canvas
+    c = canvas.Canvas(buf, pagesize=letter, bottomup=0)
+    # Create Text Object
+    textob = c.beginText()
+    textob.setTextOrigin(inch, inch)
+    textob.setFont("Helvetica", 8)
+
+    # Add some lines of text
+    # Designate the model
+    logs = LogEntry.objects.all()
+    # Create blank list
+    lines = []
+    # Write the log entries to lines
+    for log_entry in logs:
+        original_object = log_entry.object_repr
+        changed_object = log_entry.changes
+        lines.append(original_object)
+        lines.append(changed_object)
+        lines.append(" ")
+        lines.append("===================")
+
+    # Loop
+    for line in lines:
+        textob.textLine(line)
+
+    # Finish up
+    c.drawText(textob)
+
+    c.showPage()
+    c.save()
+    buf.seek(0)
+
+    # return file
+    return FileResponse(buf, as_attachment=True, filename='Audit-Logs.pdf')
 def index(request):
     return render(request, 'index.html')
 
@@ -101,44 +138,5 @@ def cart(request):
 
 
 def drivers(request):
-    if request.method == "POST":
-        form = SponsorApplicationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Application Submitted")
-    else:
-        form = SponsorApplicationForm()
     return render(request, "drivers.html", {'form': form})
 
-
-'''def login(request):
-    return render(request, 'login.html')'''
-
-'''def signin(request):
-    submitted = False
-    if request.method == "POST":
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect('/dashboard?submitted=True')
-    else:
-        form = NewUserForm
-        if 'submitted' in request.GET:
-            submitted = True
-    return render(request, 'signup.html', {'form': form, 'submitted': submitted})'''
-
-'''def signup(request):
-    submitted = False
-    if request.method == "POST":
-        form = ReturnUser(request.POST)
-        if form.is_valid():
-            try:
-                p = UserInfo.objects.get('user_Return.firstName')
-                return HttpResponseRedirect('/dashboard?submitted=True')
-            except UserInfo.DoesNotExist:
-                raise forms.ValidationError("User not exist.")
-    else:
-        form = ReturnUser
-        if 'submitted' in request.GET:
-            submitted = True
-    return render(request, 'signin.html', {'form': form, 'submitted': submitted})'''

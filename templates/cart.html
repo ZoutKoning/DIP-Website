@@ -138,15 +138,17 @@
         }
 
         //updates user points
-        function updateUserPointsUI() {
-            const userPoints = localStorage.getItem('userPoints');
-            document.getElementById('user-points').innerText = '{{ wallet_points }}';
-        }
+    function updateUserPointsUI() {
+        // Set points to 200 directly
+        localStorage.setItem('userPoints', '200');
+        document.getElementById('user-points').innerText = '200';
+    }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            loadCartItems();
-            updateUserPointsUI();
-        });
+    document.addEventListener('DOMContentLoaded', () => {
+        loadCartItems();
+        updateUserPointsUI();
+    });
+
     </script>
 </body>
 </html>

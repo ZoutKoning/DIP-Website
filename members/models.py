@@ -38,7 +38,7 @@ SPONSOR_CHOICES = (
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='profile')
     # username = models.CharField(max_length=150, unique=True)
     role = models.CharField(max_length=7, choices=ROLE_CHOICES, default=DRIVER)
     # mySponsors = models.CharField(max_length=9, choices=SPONSOR_CHOICES, default=NONE)

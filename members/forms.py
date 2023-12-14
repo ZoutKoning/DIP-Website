@@ -1,7 +1,8 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from .models import UserProfile
+from .models import Account
+
 
 # ROLE CHOICES
 DRIVER = "driver"
@@ -30,23 +31,23 @@ class RegisterUserForm(UserCreationForm):
     email = forms.EmailField()
     first_name = forms.CharField(max_length=100)
     last_name = forms.CharField(max_length=100)
-
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2')
+        fields = ('first_name', 'last_name', 'email', 'username', 'password1', 'password2',)
 
 
-class ProfileForm(forms.ModelForm):
+class AccountForm(forms.ModelForm):
     role_field = forms.ChoiceField(choices=ROLE_CHOICES)
+    sponsor_field = forms.ChoiceField(choices=SPONSOR_CHOICES)
 
     class Meta:
-        model = UserProfile
-        fields = ('role_field',)
+        model = Account
+        fields = ('role_field', 'sponsor_field',)
 
 
 class SponsorApplicationForm(forms.ModelForm):
     sponsor_field = forms.ChoiceField(choices=SPONSOR_CHOICES)
 
     class Meta:
-        model = UserProfile
+        model = Account
         fields = ('sponsor_field',)

@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
-# from members.models import UserProfile
+from members.models import Account
 
 
 # Create your models here
@@ -29,7 +29,7 @@ class User(models.Model):
 
 
 class points(models.Model):
-    user = models.OneToOneField(UserProfile, on_delete=models.CASCADE,)
+    user = models.OneToOneField(Account, on_delete=models.CASCADE,)
     myPoints = models.IntegerField(default=100)
 
 

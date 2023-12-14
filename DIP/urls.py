@@ -14,9 +14,5 @@ urlpatterns = [
     path('catalog/', views.catalog, name="catalog"),
     # URL path to the cart
     path('cart/', views.cart, name="cart"),
-<<<<<<< HEAD
-     path('logs_report', views.logs_report, name='view_logs'),
-=======
     path('logs_report', views.logs_report, name='view_logs'),
->>>>>>> d6c9feded8c11fb9a5350c1cc61e81cdb0ba35f1
 ]

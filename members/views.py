@@ -5,6 +5,9 @@ from django.contrib import messages
 from .forms import RegisterUserForm, AccountForm, SponsorApplicationForm
 from .models import Account
 
+DRIVER = "driver"
+SPONSOR = "sponsor"
+ADMIN = "admin"
 
 # Create your views here.
 def login_user(request):
@@ -32,9 +35,8 @@ def register_user(request):
         form_reg = RegisterUserForm(request.POST)
         form_prof = AccountForm(request.POST)
         if form_reg.is_valid() and form_prof.is_valid():
-            if request.POST:
-                temp = request.POST['role_field']
-                print(temp)
+            temp = request.POST['role_field']
+            print(temp)
             new_user = form_reg.save()
             account = form_prof.save(commit=False)
             if Account.user_id is None:
@@ -44,7 +46,12 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, "Sign Up Successful")
-            return redirect('dashboard')
+            if temp == DRIVER:
+                return redirect('drivers')
+            elif temp == SPONSOR:
+                return redirect('sponsors')
+            else:
+                return redirect('dashboard')
     else:
         form_reg = RegisterUserForm()
         form_prof = AccountForm()

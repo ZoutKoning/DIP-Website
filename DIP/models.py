@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 import datetime
 from auditlog.registry import auditlog
+from members.models import Account
 
 
 # Create your models here
@@ -23,7 +24,13 @@ class NewUser(models.Model):
 
 class User(models.Model):
     user_ID = models.IntegerField(primary_key=True)
-    user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+    # Commenting out line because of FK no null error
+    # user_Return = models.ForeignKey(NewUser, on_delete=models.CASCADE)
+
+
+class points(models.Model):
+    user = models.OneToOneField(Account, on_delete=models.CASCADE,)
+    myPoints = models.IntegerField(default=100)
 
 
 class mysprint(models.Model):
@@ -37,3 +44,7 @@ auditlog.register(mysprint)
 auditlog.register(User)
 auditlog.register(NewUser)
 auditlog.register(DIP)
+
+
+
+

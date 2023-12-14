@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+        <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!--section Navbar-->
+    <nav class="navbar">
+        <div class="navbar__container">
+            <a href="#home" id="navbar__logo">D.I.P</a>
+            <div class="navbar__toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="navbar__menu">
+                <li class="navbar__item">
+                    <a href="{% url 'dashboard' %}" class="navbar__links" id="dashboard-page">Dashboard</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="{%url 'about' %}" class="navbar__links" id="about-page">About Page</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="{%url 'points' %}" class="navbar__links" id="project-page">Wallet</a>
+                 </li>
+                 <li class="navbar__item">
+                    <a href="{%url 'catalog' %}" class="navbar__links" id="catalog-page">Catalog</a>
+                 </li>
+                 {% if user.is_authenticated %}
+                    <li class="navbar__item">
+                        <a href="{%url 'logout_user' %}" class="navbar__links" id="sign-out-page">Log-out</a>
+                     </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    <div class="signPage" id="editProfilePage">
+        <div class="signPage__container">
+            <div class="signPage__heading">Edit Profile</div>
+        </div>
+    </div>
+</body>
+</html>

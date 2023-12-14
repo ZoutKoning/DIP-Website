@@ -2,10 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import RegisterUserForm
+from .forms import RegisterUserForm, AccountForm, SponsorApplicationForm
+from .models import Account
+
+DRIVER = "driver"
+SPONSOR = "sponsor"
+ADMIN = "admin"
 
 # Create your views here.
-
 def login_user(request):
     if request.method == "POST":
         username = request.POST["username"]
@@ -28,15 +32,28 @@ def logout_user(request):
 
 def register_user(request):
     if request.method == "POST":
-        form = RegisterUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
+        form_reg = RegisterUserForm(request.POST)
+        form_prof = AccountForm(request.POST)
+        if form_reg.is_valid() and form_prof.is_valid():
+            temp = request.POST['role_field']
+            print(temp)
+            new_user = form_reg.save()
+            account = form_prof.save(commit=False)
+            if Account.user_id is None:
+                Account.user_id = new_user.id
+            username = form_reg.cleaned_data['username']
+            password = form_reg.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, "Sign Up Successful")
-            return redirect('dashboard')
+            if temp == DRIVER:
+                return redirect('drivers')
+            elif temp == SPONSOR:
+                return redirect('sponsors')
+            else:
+                return redirect('dashboard')
     else:
-        form = RegisterUserForm()
-    return render(request, 'authenticate/newUser.html', {'form': form})
+        form_reg = RegisterUserForm()
+        form_prof = AccountForm()
+    return render(request, 'authenticate/newUser.html',
+                  {'form_reg': form_reg, 'form_prof': form_prof})

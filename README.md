@@ -1,4 +1,4 @@
-# Drivers Incentive Project - Sem in Professional Issues II
+# Sem in Professional Issues II - Driver's Incentive Project
 Developed by: <br />
  Jalen Barnes, James Barr, Jonathan Moore and Joseph Suter. <br />
 This repo is to is to showcase the work we completed. <br />
